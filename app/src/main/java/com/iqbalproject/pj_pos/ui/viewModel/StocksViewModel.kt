@@ -1,4 +1,4 @@
-package com.iqbalproject.pj_pos.ui
+package com.iqbalproject.pj_pos.ui.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.iqbalproject.pj_pos.R
 import com.iqbalproject.pj_pos.adapter.StockAdapter
 import com.iqbalproject.pj_pos.model.StockDetail
+import com.iqbalproject.pj_pos.ui.viewModel.StocksViewModel
 import kotlinx.android.synthetic.main.activity_sales.*
 
 class SalesActivity : AppCompatActivity() {
