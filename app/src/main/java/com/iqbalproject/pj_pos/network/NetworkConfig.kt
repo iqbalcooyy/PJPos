@@ -16,8 +16,9 @@ class NetworkConfig {
             HttpLoggingInterceptor.Level.BODY //Level Body utk menampilkan semua isi response nya(end point s/d json nya)
 
         var okhttp = OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor)
-            .connectTimeout(30, TimeUnit.SECONDS)
-            .writeTimeout(30, TimeUnit.SECONDS)
+            .connectTimeout(Constants.REQ_TIMEOUT_DURATION.toLong(), TimeUnit.SECONDS)
+            .writeTimeout(Constants.REQ_TIMEOUT_DURATION.toLong(), TimeUnit.SECONDS)
+            .readTimeout(Constants.REQ_TIMEOUT_DURATION.toLong(), TimeUnit.SECONDS)
             .retryOnConnectionFailure(true)
             .build()
 
