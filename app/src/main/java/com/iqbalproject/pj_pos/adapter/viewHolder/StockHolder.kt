@@ -23,13 +23,13 @@ class StockHolder(private val context: Context, view: View) : RecyclerView.ViewH
     private lateinit var tvTotalTerbilang: TextView
 
     fun bindView(stocks: StockDetail, stocksList: List<StockDetail>) {
-        itemView.tvItemName.text = stocks.item_name
-        itemView.tvItemPrice.text = "Rp " + stocks.selling_price.toString()
-        tvTotalPay = (context as SalesActivity).tvTotalPay
-        tvTotalTerbilang = (context as SalesActivity).tvTotalTerbilang
-
         val localeID: Locale = Locale("in", "ID")
         val rupiahsFormat: NumberFormat = NumberFormat.getCurrencyInstance(localeID)
+
+        itemView.tvItemName.text = stocks.item_name
+        itemView.tvItemPrice.text = rupiahsFormat.format(stocks.selling_price.toDouble())
+        tvTotalPay = (context as SalesActivity).tvTotalPay
+        tvTotalTerbilang = context.tvTotalTerbilang
 
         itemView.btnAddItem.onClick {
             qty += 1
