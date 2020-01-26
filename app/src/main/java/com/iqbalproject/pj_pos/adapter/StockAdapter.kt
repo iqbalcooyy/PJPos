@@ -7,9 +7,12 @@ import com.iqbalproject.pj_pos.R
 import com.iqbalproject.pj_pos.adapter.viewHolder.StockHolder
 import com.iqbalproject.pj_pos.model.StockDetail
 
-class StockAdapter(private val stocks: List<StockDetail>): RecyclerView.Adapter<StockHolder>() {
+class StockAdapter(private val stocks: List<StockDetail>) : RecyclerView.Adapter<StockHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StockHolder {
-        return StockHolder(LayoutInflater.from(parent.context).inflate(R.layout.items_sale, parent, false))
+        return StockHolder(
+            parent.context,
+            LayoutInflater.from(parent.context).inflate(R.layout.items_sale, parent, false)
+        )
     }
 
     override fun getItemCount(): Int {
@@ -17,6 +20,6 @@ class StockAdapter(private val stocks: List<StockDetail>): RecyclerView.Adapter<
     }
 
     override fun onBindViewHolder(holder: StockHolder, position: Int) {
-        holder.bindView(stocks.get(position))
+        holder.bindView(stocks.get(position), stocks)
     }
 }

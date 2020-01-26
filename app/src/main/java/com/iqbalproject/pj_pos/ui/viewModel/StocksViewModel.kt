@@ -38,11 +38,11 @@ class StocksViewModel : ViewModel() {
         })
     }
 
-    fun getData(): MutableLiveData<Stocks>{
+    fun getData(): MutableLiveData<Stocks> {
         return data
     }
 
-    fun getStatus(): MutableLiveData<Boolean>{
+    fun getStatus(): MutableLiveData<Boolean> {
         return status
     }
 }

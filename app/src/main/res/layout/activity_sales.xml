@@ -26,22 +26,24 @@
 
         <TextView
                 android:id="@+id/tvTotalPay"
-                android:text="Rp 1,200,000"
+                android:text="Rp0"
                 android:textColor="@android:color/white"
+                android:layout_below="@id/tv1"
+                android:layout_marginTop="25dp"
                 android:textStyle="bold"
-                android:textSize="30sp"
-                android:layout_centerVertical="true"
+                android:textSize="40sp"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
         <TextView
                 android:id="@+id/tvTotalTerbilang"
-                android:text="Satu Juta Dua Ratus Ribu Rupiah"
+                android:text=""
                 android:textColor="@android:color/white"
                 android:textStyle="italic"
-                android:textSize="15sp"
+                android:textSize="13sp"
                 android:layout_below="@+id/tvTotalPay"
+                android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>

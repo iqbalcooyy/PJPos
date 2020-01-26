@@ -1,8 +1,8 @@
 package com.iqbalproject.pj_pos.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.iqbalproject.pj_pos.R
@@ -22,10 +22,10 @@ class SalesActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this).get(StocksViewModel::class.java)
 
         viewModel.getStatus().observe(this, Observer {
-            if(it == false){
+            if (it == false) {
                 rvItemsSale.visibility = View.GONE
                 tvNull.visibility = View.VISIBLE
-            }else{
+            } else {
                 rvItemsSale.visibility = View.VISIBLE
                 tvNull.visibility = View.GONE
             }
