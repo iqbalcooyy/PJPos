@@ -58,6 +58,7 @@
                     android:drawableTint="@android:color/darker_gray"
                     android:layout_below="@+id/title"
                     android:layout_marginTop="20dp"
+                    android:singleLine="true"
                     android:background="@drawable/rounded_edittext"
             />
 

@@ -2,18 +2,22 @@ package com.iqbalproject.pj_pos.network
 
 import com.iqbalproject.pj_pos.model.LoginResponse
 import com.iqbalproject.pj_pos.model.Stocks
+import com.iqbalproject.pj_pos.utils.Constants
 import retrofit2.Call
-import retrofit2.http.*
+import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface ApiService {
 
-    @GET("read_stock.php")
-    fun getStocks(): Call<Stocks>
+    @GET("stock")
+    fun getStocks(
+        @Query("pjpos_key") api_key: String = Constants.API_KEY
+    ): Call<Stocks>
 
-    @FormUrlEncoded
-    @POST("login.php")
+    @GET("login_user")
     fun login(
-        @Field("username") username: String,
-        @Field("password") password: String
+        @Query("username") username: String,
+        @Query("password") password: String,
+        @Query("pjpos_key") api_key: String = Constants.API_KEY
     ): Call<LoginResponse>
 }

@@ -29,7 +29,7 @@ class StocksViewModel : ViewModel() {
             override fun onResponse(call: Call<Stocks>, response: Response<Stocks>) {
                 status.value = true
 
-                if (response.isSuccessful == false || response.body()?.stocks.isNullOrEmpty()) {
+                if (response.isSuccessful == false || response.body()?.result.isNullOrEmpty()) {
                     status.value = false
                 } else {
                     data.value = response.body()

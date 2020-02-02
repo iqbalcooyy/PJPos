@@ -24,6 +24,7 @@
         />
 
         <TextView
+                android:id="@+id/tvTransDateConfirm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Date: 20 January 2020"
@@ -34,6 +35,7 @@
         />
 
         <TextView
+                android:id="@+id/tv7"
                 android:layout_below="@+id/tv1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -53,6 +55,41 @@
         />
 
         <TextView
+                android:id="@+id/tvCustNameConf"
+                android:layout_below="@+id/tv7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Customer Name"
+                android:textStyle="italic"
+                android:textColor="@android:color/white"
+                android:textSize="15sp"
+                android:layout_marginTop="20dp"
+        />
+
+        <TextView
+                android:id="@+id/tvCustAddressConf"
+                android:layout_below="@+id/tvCustNameConf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Customer Address"
+                android:textStyle="italic"
+                android:textColor="@android:color/white"
+                android:textSize="15sp"
+        />
+
+        <TextView
+                android:id="@+id/tvCustTelpConf"
+                android:layout_below="@+id/tvCustAddressConf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Customer Telp."
+                android:textStyle="italic"
+                android:textColor="@android:color/white"
+                android:textSize="15sp"
+        />
+
+        <TextView
+                android:id="@+id/tvTotalPayConfirm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Rp 1,000,000"
@@ -135,7 +172,7 @@
                 android:gravity="right"
                 android:paddingLeft="15dp"
                 android:layout_marginTop="5dp"
-                android:text="Rp 200,000"
+                android:text="Rp0"
                 android:textColor="@color/colorSecondaryText"
                 android:textSize="15sp"
         />
@@ -169,7 +206,7 @@
 
     </RelativeLayout>
 
-    <com.google.android.material.button.MaterialButton
+    <Button
             android:id="@+id/btnPay"
             android:text="Pay Now!"
             android:textColor="@android:color/white"

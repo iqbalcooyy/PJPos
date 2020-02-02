@@ -19,7 +19,7 @@ class LoginViewModel : ViewModel() {
         status.value = null
         data.value = LoginResponse(status.toString(), Constants.RES_ON_LOAD, null)
 
-        NetworkConfig().api().login(userId, pass).enqueue(object : Callback<LoginResponse> {
+        NetworkConfig().api().login(username = userId, password = pass).enqueue(object : Callback<LoginResponse> {
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                 status.value = false
 
