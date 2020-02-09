@@ -1,5 +1,7 @@
 package com.iqbalproject.pj_pos.utils
 
+import android.content.Context
+import cn.refactor.lib.colordialog.PromptDialog
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -43,7 +45,7 @@ class Tools {
 
         fun getCurrentDate(): String {
             val dateFormat = SimpleDateFormat("dd MMMM yyyy")
-            dateFormat.timeZone = TimeZone.getTimeZone("UTC")
+            dateFormat.timeZone = TimeZone.getTimeZone("GMT+7")
             val today: Date = Calendar.getInstance().time
             return dateFormat.format(today)
         }
@@ -53,6 +55,42 @@ class Tools {
             val rupiahsFormat: NumberFormat = NumberFormat.getCurrencyInstance(localeID)
 
             return rupiahsFormat.format(number)
+        }
+
+        fun alertSuccess(context: Context, title: String, message: String) {
+            PromptDialog(context)
+                .setDialogType(PromptDialog.DIALOG_TYPE_SUCCESS)
+                .setAnimationEnable(true)
+                .setTitleText(title)
+                .setContentText(message)
+                .setPositiveListener("OK") {
+                    it.dismiss()
+                }
+                .show()
+        }
+
+        fun alertFailed(context: Context, title: String, message: String) {
+            PromptDialog(context)
+                .setDialogType(PromptDialog.DIALOG_TYPE_WRONG)
+                .setAnimationEnable(true)
+                .setTitleText(title)
+                .setContentText(message)
+                .setPositiveListener("OK") {
+                    it.dismiss()
+                }
+                .show()
+        }
+
+        fun alertInfo(context: Context, title: String, message: String) {
+            PromptDialog(context)
+                .setDialogType(PromptDialog.DIALOG_TYPE_INFO)
+                .setAnimationEnable(true)
+                .setTitleText(title)
+                .setContentText(message)
+                .setPositiveListener("OK") {
+                    it.dismiss()
+                }
+                .show()
         }
     }
 }

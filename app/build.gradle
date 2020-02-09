@@ -56,6 +56,7 @@ dependencies {
     // Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
 
-    //Dialog
-    implementation 'com.github.Shashank02051997:FancyAlertDialog-Android:0.1'
+    //Alert
+    implementation 'com.github.Shashank02051997:FancyToast-Android:0.1.6'
+    implementation 'com.github.andyxialm:ColorDialog:1.0.0'
 }

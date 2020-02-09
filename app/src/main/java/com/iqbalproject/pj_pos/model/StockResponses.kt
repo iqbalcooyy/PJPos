@@ -17,6 +17,7 @@ data class StockDetail(
     val selling_price: Int,
     val purchase_price: Int,
     // for Sales Confirmation :
+    var cust_id: String? = null,
     var cust_name: String? = null,
     var cust_address: String? = null,
     var cust_telp: String? = null,

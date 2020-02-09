@@ -8,4 +8,9 @@
     <color name="colorAccentDark">#0088a3</color>
     <color name="colorPrimaryText">#ffffff</color>
     <color name="colorSecondaryText">#000000</color>
+
+    <!--Alert Dialog-->
+    <color name="alertError">#FF1000</color>
+    <color name="alertInformation">#FADF00</color>
+    <color name="alertSuccess">#35A83A</color>
 </resources>

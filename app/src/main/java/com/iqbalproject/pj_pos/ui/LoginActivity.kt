@@ -2,14 +2,15 @@ package com.iqbalproject.pj_pos.ui
 
 import android.os.Bundle
 import android.text.Editable
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.iqbalproject.pj_pos.R
 import com.iqbalproject.pj_pos.ui.viewModel.LoginViewModel
+import com.iqbalproject.pj_pos.utils.Tools
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.toast
 
 class LoginActivity : AppCompatActivity() {
 
@@ -26,18 +27,21 @@ class LoginActivity : AppCompatActivity() {
         password = etPassword.editableText
 
         btnLogin.setOnClickListener {
+            progressLogin.visibility = View.VISIBLE
             viewModel.loadData(userId.toString(), password.toString())
-            viewModel.getStatus().observe(this, Observer {
-                when (it) {
-                    true -> {
-                        startActivity<MainActivity>()
+            viewModel.getData().observe(this, Observer { login ->
+                viewModel.getStatus().observe(this, Observer { status ->
+                    when (status) {
+                        true -> {
+                            progressLogin.visibility = View.GONE
+                            startActivity<MainActivity>()
+                        }
+                        else -> {
+                            progressLogin.visibility = View.GONE
+                            Tools.alertFailed(this, "Failed", login.message.toString())
+                        }
                     }
-                    else -> {
-                        viewModel.getData().observe(this, Observer {
-                            toast(it.message.toString()).show()
-                        })
-                    }
-                }
+                })
             })
         }
     }

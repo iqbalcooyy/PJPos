@@ -17,7 +17,6 @@ class LoginViewModel : ViewModel() {
 
     fun loadData(userId: String, pass: String) {
         status.value = null
-        data.value = LoginResponse(status.toString(), Constants.RES_ON_LOAD, null)
 
         NetworkConfig().api().login(username = userId, password = pass).enqueue(object : Callback<LoginResponse> {
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
@@ -33,7 +32,6 @@ class LoginViewModel : ViewModel() {
                 status.value = response.body()?.status?.toBoolean()
                 data.value = response.body()
             }
-
         })
     }
 
@@ -41,7 +39,7 @@ class LoginViewModel : ViewModel() {
         return status
     }
 
-    fun getData(): MutableLiveData<LoginResponse>{
+    fun getData(): MutableLiveData<LoginResponse> {
         return data
     }
 }
