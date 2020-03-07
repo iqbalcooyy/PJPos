@@ -28,20 +28,17 @@ class LoginActivity : AppCompatActivity() {
 
         btnLogin.setOnClickListener {
             progressLogin.visibility = View.VISIBLE
-            viewModel.loadData(userId.toString(), password.toString())
-            viewModel.getData().observe(this, Observer { login ->
-                viewModel.getStatus().observe(this, Observer { status ->
-                    when (status) {
-                        true -> {
-                            progressLogin.visibility = View.GONE
-                            startActivity<MainActivity>()
-                        }
-                        else -> {
-                            progressLogin.visibility = View.GONE
-                            Tools.alertFailed(this, "Failed", login.message.toString())
-                        }
+            viewModel.loadData(userId.toString(), password.toString()).observe(this, Observer {
+                when (it.status) {
+                    "true" -> {
+                        progressLogin.visibility = View.GONE
+                        startActivity<MainActivity>()
                     }
-                })
+                    else -> {
+                        progressLogin.visibility = View.GONE
+                        Tools.alertFailed(this, "Failed", it.message.toString())
+                    }
+                }
             })
         }
     }

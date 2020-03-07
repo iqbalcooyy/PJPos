@@ -1,5 +1,6 @@
 package com.iqbalproject.pj_pos.ui.viewModel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.iqbalproject.pj_pos.model.LoginResponse
@@ -12,11 +13,9 @@ import java.net.SocketTimeoutException
 
 class LoginViewModel : ViewModel() {
 
-    private var status = MutableLiveData<Boolean>()
-    private var data = MutableLiveData<LoginResponse>()
-
-    fun loadData(userId: String, pass: String) {
-        status.value = null
+    fun loadData(userId: String, pass: String): LiveData<LoginResponse> {
+        var status = MutableLiveData<Boolean>()
+        var data = MutableLiveData<LoginResponse>()
 
         NetworkConfig().api().login(username = userId, password = pass).enqueue(object : Callback<LoginResponse> {
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
@@ -33,13 +32,6 @@ class LoginViewModel : ViewModel() {
                 data.value = response.body()
             }
         })
-    }
-
-    fun getStatus(): MutableLiveData<Boolean> {
-        return status
-    }
-
-    fun getData(): MutableLiveData<LoginResponse> {
         return data
     }
 }
