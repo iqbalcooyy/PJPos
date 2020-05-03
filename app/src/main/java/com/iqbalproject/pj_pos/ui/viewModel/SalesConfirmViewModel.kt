@@ -2,7 +2,7 @@ package com.iqbalproject.pj_pos.ui.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.iqbalproject.pj_pos.model.SalesResponses
+import com.iqbalproject.pj_pos.model.TrxResponses
 import com.iqbalproject.pj_pos.network.NetworkConfig
 import com.iqbalproject.pj_pos.utils.Constants
 import retrofit2.Call
@@ -13,14 +13,15 @@ import java.net.SocketTimeoutException
 class SalesConfirmViewModel : ViewModel() {
 
     private var status = MutableLiveData<Boolean>()
-    private var data = MutableLiveData<SalesResponses>()
+    private var data = MutableLiveData<TrxResponses>()
 
     fun loadData(
         custId: String,
         itemId: List<String>,
         discount: Int,
-        totalPay: Int,
-        saleQty: List<Int>
+        to_be_paid: Int,
+        saleQty: List<Int>,
+        paid: Int
     ) {
         status.value = null
 
@@ -28,20 +29,21 @@ class SalesConfirmViewModel : ViewModel() {
             cust_id = custId,
             item_id = itemId,
             discount = discount,
-            total_pay = totalPay,
-            sale_qty = saleQty
+            to_be_paid = to_be_paid,
+            sale_qty = saleQty,
+            paid = paid
         )
-            .enqueue(object : Callback<SalesResponses> {
-                override fun onFailure(call: Call<SalesResponses>, t: Throwable) {
+            .enqueue(object : Callback<TrxResponses> {
+                override fun onFailure(call: Call<TrxResponses>, t: Throwable) {
                     status.value = false
 
                     if (t is SocketTimeoutException)
-                        data.postValue(SalesResponses(status.toString(), null, Constants.RES_ON_TIMEOUT))
+                        data.postValue(TrxResponses(status.toString(), null, Constants.RES_ON_TIMEOUT))
                     else
-                        data.postValue(SalesResponses(status.toString(), null, t.message.toString()))
+                        data.postValue(TrxResponses(status.toString(), null, t.message.toString()))
                 }
 
-                override fun onResponse(call: Call<SalesResponses>, response: Response<SalesResponses>) {
+                override fun onResponse(call: Call<TrxResponses>, response: Response<TrxResponses>) {
                     status.value = response.body()?.status?.toBoolean()
                     data.value = response.body()
                 }
@@ -52,7 +54,7 @@ class SalesConfirmViewModel : ViewModel() {
         return status
     }
 
-    fun getData(): MutableLiveData<SalesResponses> {
+    fun getData(): MutableLiveData<TrxResponses> {
         return data
     }
 }

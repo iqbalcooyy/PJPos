@@ -2,6 +2,7 @@ package com.iqbalproject.pj_pos.utils
 
 import android.content.Context
 import cn.refactor.lib.colordialog.PromptDialog
+import com.shashank.sony.fancytoastlib.FancyToast
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -91,6 +92,46 @@ class Tools {
                     it.dismiss()
                 }
                 .show()
+        }
+
+        fun toastWarning(context: Context, msg: String) {
+            FancyToast.makeText(
+                context,
+                msg,
+                FancyToast.LENGTH_SHORT,
+                FancyToast.WARNING,
+                false
+            ).show()
+        }
+
+        fun toastSuccess(context: Context, msg: String) {
+            FancyToast.makeText(
+                context,
+                msg,
+                FancyToast.LENGTH_SHORT,
+                FancyToast.SUCCESS,
+                false
+            ).show()
+        }
+
+        fun toastConfusing(context: Context, msg: String) {
+            FancyToast.makeText(
+                context,
+                msg,
+                FancyToast.LENGTH_SHORT,
+                FancyToast.CONFUSING,
+                false
+            ).show()
+        }
+
+        fun toastError(context: Context, msg: String) {
+            FancyToast.makeText(
+                context,
+                msg,
+                FancyToast.LENGTH_LONG,
+                FancyToast.ERROR,
+                false
+            ).show()
         }
     }
 }

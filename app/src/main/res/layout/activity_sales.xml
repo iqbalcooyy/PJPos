@@ -18,6 +18,7 @@
                 android:id="@+id/tv1"
                 android:text="New Payment"
                 android:textColor="@android:color/white"
+                android:fontFamily="@font/acme"
                 android:textStyle="bold"
                 android:textSize="20sp"
                 android:gravity="center"
@@ -27,6 +28,7 @@
         <TextView
                 android:id="@+id/tvTotalPay"
                 android:text="Rp0"
+                android:fontFamily="@font/acme"
                 android:textColor="@android:color/white"
                 android:layout_below="@id/tv1"
                 android:layout_marginTop="25dp"
@@ -42,6 +44,7 @@
                 android:textColor="@android:color/white"
                 android:textStyle="italic"
                 android:textSize="13sp"
+                android:fontFamily="@font/acme"
                 android:layout_below="@+id/tvTotalPay"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
@@ -51,6 +54,7 @@
         <TextView
                 android:id="@+id/tvTransDate"
                 android:text="Kamis, 16 Januari 2020"
+                android:fontFamily="@font/acme"
                 android:textColor="@android:color/white"
                 android:textStyle="italic"
                 android:textSize="13sp"
@@ -81,14 +85,13 @@
             android:layout_below="@+id/header"
             android:layout_above="@+id/btnProcess"
             android:gravity="center_vertical|center_horizontal"
-            android:visibility="gone"
-
-    />
+            android:visibility="gone" />
 
     <Button
             android:id="@+id/btnProcess"
             android:layout_alignParentBottom="true"
             android:text="Process"
+            android:fontFamily="@font/acme"
             android:textAllCaps="false"
             android:background="@color/colorPrimary"
             android:textColor="@android:color/white"

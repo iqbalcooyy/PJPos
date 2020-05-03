@@ -13,10 +13,12 @@ class SalesConfirmationHolder(view: View): RecyclerView.ViewHolder(view) {
 
     fun bindView(item: StockDetail) {
         salePrice = Tools.convertRupiahsFormat(item.selling_price.toDouble())
-        pay = Tools.convertRupiahsFormat(item.pay.toDouble())
+        pay = item.amount_dummy?.toDouble()?.let {
+            Tools.convertRupiahsFormat(it)
+        }.toString()
 
         itemView.tvItemNameConf.text = item.item_name
-        itemView.tvItemQtyPrice.text = item.sale_qty.toString() + " x " + salePrice
+        itemView.tvItemQtyPrice.text = item.qty_dummy.toString() + " x " + salePrice
         itemView.tvItemPriceConf.text = pay
     }
 }

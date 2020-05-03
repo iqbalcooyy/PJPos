@@ -1,0 +1,63 @@
+package com.iqbalproject.pj_pos.adapter.viewHolder
+
+import android.content.Context
+import android.content.DialogInterface
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.Button
+import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.RecyclerView
+import com.iqbalproject.pj_pos.R
+import com.iqbalproject.pj_pos.model.SupplierResult
+import com.iqbalproject.pj_pos.ui.EditActivity
+import kotlinx.android.synthetic.main.item_cust_supp.view.*
+import kotlinx.android.synthetic.main.option_button.view.*
+import org.jetbrains.anko.layoutInflater
+import org.jetbrains.anko.startActivity
+
+class SupplierViewHolder(private val context: Context, view: View) : RecyclerView.ViewHolder(view) {
+
+    private lateinit var dialogForm: AlertDialog.Builder
+    private lateinit var dialogView: View
+    private lateinit var inflater: LayoutInflater
+    private lateinit var btnEdit: Button
+    private lateinit var btnDelete: Button
+
+    fun bindView(supplier: SupplierResult) {
+        itemView.tvCustSuppName.text = supplier.supplier_name
+        itemView.tvCustSuppId.text = supplier.supplier_id
+        itemView.tvCustSuppAddress.text = supplier.supplier_address
+        itemView.tvCustSuppTelp.text = supplier.supplier_telp
+
+        itemView.setOnClickListener {
+            dialog(supplier)
+        }
+    }
+
+    private fun dialog(supplier: SupplierResult) {
+        dialogForm = AlertDialog.Builder(context)
+        inflater = context.layoutInflater
+        dialogView = inflater.inflate(R.layout.option_button, null)
+        btnEdit = dialogView.btnEdit
+        btnDelete = dialogView.btnDelete
+
+        //show dialogform
+        dialogForm.setView(dialogView)
+        dialogForm.setTitle("Option Button")
+        dialogForm.setCancelable(true)
+        dialogForm.setPositiveButton("Batal", object : DialogInterface.OnClickListener {
+            override fun onClick(dialog: DialogInterface?, p1: Int) {
+                dialog?.dismiss()
+            }
+        })
+
+        btnEdit.setOnClickListener {
+            context.startActivity<EditActivity>(
+                "code" to "supp",
+                "supplier" to supplier
+            )
+        }
+
+        dialogForm.show()
+    }
+}

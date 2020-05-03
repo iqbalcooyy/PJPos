@@ -16,11 +16,12 @@ data class StockDetail(
     val item_qty: Int,
     val selling_price: Int,
     val purchase_price: Int,
-    // for Sales Confirmation :
-    var cust_id: String? = null,
-    var cust_name: String? = null,
-    var cust_address: String? = null,
-    var cust_telp: String? = null,
-    var sale_qty: Int = 0,
-    var pay: Int = 0
+    val uom: String,
+    // for Sales or Purchase Confirmation :
+    var id_dummy: String? = null,
+    var name_dummy: String? = null,
+    var address_dummy: String? = null,
+    var telp_dummy: String? = null,
+    var qty_dummy: Int = 0,
+    var amount_dummy: Int = 0
 ) : Parcelable

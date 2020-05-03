@@ -9,5 +9,6 @@ data class LoginResponse(
 data class LoginResult(
     val username: String? = null,
     val password: String? = null,
-    val position: String? = null
+    val position: String? = null,
+    val fullname: String? = null
 )

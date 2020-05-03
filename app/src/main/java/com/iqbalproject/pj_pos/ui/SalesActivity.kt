@@ -12,8 +12,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.iqbalproject.pj_pos.R
-import com.iqbalproject.pj_pos.adapter.SpinnerAdapter
-import com.iqbalproject.pj_pos.adapter.StockAdapter
+import com.iqbalproject.pj_pos.adapter.SpinnerCustAdapter
+import com.iqbalproject.pj_pos.adapter.StockSalesAdapter
 import com.iqbalproject.pj_pos.model.StockDetail
 import com.iqbalproject.pj_pos.ui.viewModel.CustomerViewModel
 import com.iqbalproject.pj_pos.ui.viewModel.StocksViewModel
@@ -55,8 +55,8 @@ class SalesActivity : AppCompatActivity() {
         })
 
         viewModelStock.getData().observe(this, Observer {
-            it?.result?.let {
-                rvItemsSale.adapter = StockAdapter(it)
+            it?.result?.let { stockList ->
+                rvItemsSale.adapter = StockSalesAdapter(stockList)
             }
         })
 
@@ -85,15 +85,10 @@ class SalesActivity : AppCompatActivity() {
 
         //get customers
         viewModelCustomer = ViewModelProviders.of(this).get(CustomerViewModel::class.java)
-        viewModelCustomer.getStatus().observe(this, Observer {
-            when (it) {
-                false -> toast("Customers not found!").show()
-            }
-        })
 
-        viewModelCustomer.getData().observe(this, Observer {
+        viewModelCustomer.loadData().observe(this, Observer {
             spinnerCustomer.adapter = it.result?.let {
-                SpinnerAdapter(this.applicationContext, it)
+                SpinnerCustAdapter(this.applicationContext, it)
             }
 
             spinnerCustomer.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -105,10 +100,10 @@ class SalesActivity : AppCompatActivity() {
                     customerTelp.text = it.result?.get(position)?.cust_telp
 
                     saleConfirm.forEach { confirm ->
-                        confirm.cust_id = it.result?.get(position)?.cust_id
-                        confirm.cust_name = it.result?.get(position)?.cust_name
-                        confirm.cust_address = it.result?.get(position)?.cust_address
-                        confirm.cust_telp = it.result?.get(position)?.cust_telp
+                        confirm.id_dummy = it.result?.get(position)?.cust_id
+                        confirm.name_dummy = it.result?.get(position)?.cust_name
+                        confirm.address_dummy = it.result?.get(position)?.cust_address
+                        confirm.telp_dummy = it.result?.get(position)?.cust_telp
                     }
                 }
             }

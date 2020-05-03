@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import com.iqbalproject.pj_pos.R
-import com.iqbalproject.pj_pos.model.CustomerResult
+import com.iqbalproject.pj_pos.model.SupplierResult
 
-class SpinnerAdapter(val context: Context, private val customers: List<CustomerResult>) : BaseAdapter() {
+class SpinnerSuppAdapter(val context: Context, private val suppliers: List<SupplierResult>) : BaseAdapter() {
 
     val mInflater: LayoutInflater = LayoutInflater.from(context)
 
@@ -19,7 +19,10 @@ class SpinnerAdapter(val context: Context, private val customers: List<CustomerR
 
         if (convertView == null) {
             view = mInflater.inflate(R.layout.view_dropdown_menu, parent, false)
-            vh = ItemRowHolder(view)
+            vh =
+                ItemRowHolder(
+                    view
+                )
             view?.tag = vh
         } else {
             view = convertView
@@ -30,7 +33,7 @@ class SpinnerAdapter(val context: Context, private val customers: List<CustomerR
         params.height = 60
         view.layoutParams = params
 
-        vh.custName.text = customers[position].cust_name
+        vh.custName.text = suppliers[position].supplier_name
         return view
     }
 
@@ -38,13 +41,9 @@ class SpinnerAdapter(val context: Context, private val customers: List<CustomerR
 
     override fun getItemId(p0: Int): Long = 0
 
-    override fun getCount(): Int = customers.size
+    override fun getCount(): Int = suppliers.size
 
     private class ItemRowHolder(row: View?) {
-        val custName: TextView
-
-        init {
-            this.custName = row?.findViewById(R.id.tvDropdownCust) as TextView
-        }
+        val custName: TextView = row?.findViewById(R.id.tvDropdown) as TextView
     }
 }

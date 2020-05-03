@@ -7,12 +7,13 @@
         android:layout_margin="32dp">
 
     <TextView
-            android:id="@+id/tvDropdownCust"
+            android:id="@+id/tvDropdown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="6dp"
             android:layout_marginStart="6dp"
             android:gravity="center_horizontal"
+            android:fontFamily="@font/acme"
             android:text="Muhammad Iqbal"
             android:textColor="@android:color/black"
             app:layout_constraintBottom_toBottomOf="parent"
