@@ -1,8 +1,13 @@
 package com.iqbalproject.pj_pos.utils
 
+import android.app.Activity
 import android.content.Context
 import cn.refactor.lib.colordialog.PromptDialog
+import com.iqbalproject.pj_pos.ui.MainActivity
 import com.shashank.sony.fancytoastlib.FancyToast
+import org.jetbrains.anko.clearTop
+import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.newTask
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -58,7 +63,7 @@ class Tools {
             return rupiahsFormat.format(number)
         }
 
-        fun alertSuccess(context: Context, title: String, message: String) {
+        fun alertSuccess(context: Context, title: String, message: String, finish: Boolean) {
             PromptDialog(context)
                 .setDialogType(PromptDialog.DIALOG_TYPE_SUCCESS)
                 .setAnimationEnable(true)
@@ -66,6 +71,9 @@ class Tools {
                 .setContentText(message)
                 .setPositiveListener("OK") {
                     it.dismiss()
+                    if (finish){
+                        (context as Activity).finish()
+                    }
                 }
                 .show()
         }

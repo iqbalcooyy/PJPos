@@ -40,7 +40,7 @@ interface ApiService {
         @Field("to_be_paid") to_be_paid: Int,
         @Field("sale_qty[]") sale_qty: List<Int>,
         @Field("paid") paid: Int
-        ): Call<TrxResponses>
+    ): Call<TrxResponses>
 
     @POST("trx_purchase")
     @FormUrlEncoded  // FormUrlEncoded akan menampilkan inputan pada URL
@@ -62,4 +62,87 @@ interface ApiService {
         @Field("cust_id") cust_id: String,
         @Field("ar_total") ar_total: Int
     ): Call<TrxAccReceivResponse>
+
+    @POST("supplier")
+    @FormUrlEncoded
+    fun addSupplier(
+        @Header("pjpos_key") api_key: String = Constants.API_KEY,
+        @Field("supplier_name") supplier_name: String,
+        @Field("supplier_address") supplier_address: String,
+        @Field("supplier_telp") supplier_telp: String
+    ): Call<EditResponse>
+
+    @PUT("supplier")
+    @FormUrlEncoded
+    fun editSupplier(
+        @Header("pjpos_key") api_key: String = Constants.API_KEY,
+        @Field("supplier_id") supplier_id: String,
+        @Field("supplier_name") supplier_name: String,
+        @Field("supplier_address") supplier_address: String,
+        @Field("supplier_telp") supplier_telp: String
+    ): Call<EditResponse>
+
+    @HTTP(method = "DELETE", path = "supplier", hasBody = true)
+    @FormUrlEncoded
+    fun deleteSupplier(
+        @Header("pjpos_key") api_key: String = Constants.API_KEY,
+        @Field("supplier_id") supplier_id: String
+    ): Call<EditResponse>
+
+    @POST("customers")
+    @FormUrlEncoded
+    fun addCustomer(
+        @Header("pjpos_key") api_key: String = Constants.API_KEY,
+        @Field("cust_name") cust_name: String,
+        @Field("cust_address") cust_address: String,
+        @Field("cust_telp") cust_telp: String
+    ): Call<EditResponse>
+
+    @PUT("customers")
+    @FormUrlEncoded
+    fun editCustomer(
+        @Header("pjpos_key") api_key: String = Constants.API_KEY,
+        @Field("cust_id") cust_id: String,
+        @Field("cust_name") cust_name: String,
+        @Field("cust_address") cust_address: String,
+        @Field("cust_telp") cust_telp: String
+    ): Call<EditResponse>
+
+    @HTTP(method = "DELETE", path = "customers", hasBody = true)
+    @FormUrlEncoded
+    fun deleteCustomer(
+        @Header("pjpos_key") api_key: String = Constants.API_KEY,
+        @Field("cust_id") cust_id: String
+    ): Call<EditResponse>
+
+    @POST("stock")
+    @FormUrlEncoded
+    fun addStocks(
+        @Header("pjpos_key") api_key: String = Constants.API_KEY,
+        @Field("item_name") item_name: String,
+        @Field("item_qty") item_qty: Int = 0,
+        @Field("uom") uom: String,
+        @Field("selling_price") selling_price: Int,
+        @Field("purchase_price") purchase_price: Int
+    ): Call<EditResponse>
+
+    @PUT("stock")
+    @FormUrlEncoded
+    fun editStocks(
+        @Header("pjpos_key") api_key: String = Constants.API_KEY,
+        @Field("item_id") item_id: String,
+        @Field("item_name") item_name: String,
+        @Field("item_qty") item_qty: Int,
+        @Field("uom") uom: String,
+        @Field("selling_price") selling_price: Int,
+        @Field("purchase_price") purchase_price: Int
+    ): Call<EditResponse>
+
+    @HTTP(method = "DELETE", path = "stock", hasBody = true)
+    @FormUrlEncoded
+    fun deleteStocks(
+        @Header("pjpos_key") api_key: String = Constants.API_KEY,
+        @Field("item_id") item_id: String
+    ): Call<EditResponse>
+
 }

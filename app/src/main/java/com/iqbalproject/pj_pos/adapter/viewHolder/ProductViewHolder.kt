@@ -6,29 +6,32 @@ import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.iqbalproject.pj_pos.R
-import com.iqbalproject.pj_pos.model.SupplierResult
-import com.iqbalproject.pj_pos.ui.EditActivity
-import com.iqbalproject.pj_pos.ui.SupplierActivity
-import kotlinx.android.synthetic.main.item_cust_supp.view.*
+import com.iqbalproject.pj_pos.model.StockDetail
+import com.iqbalproject.pj_pos.ui.AddProductActivity
+import com.iqbalproject.pj_pos.ui.ProductActivity
+import kotlinx.android.synthetic.main.item_product.view.*
 import org.jetbrains.anko.startActivity
 
-
-class SupplierViewHolder(private val context: Context, view: View) : RecyclerView.ViewHolder(view) {
+class ProductViewHolder(private val context: Context, view: View) : RecyclerView.ViewHolder(view) {
 
     private lateinit var dialogForm: AlertDialog.Builder
 
-    fun bindView(supplier: SupplierResult) {
-        itemView.tvCustSuppName.text = supplier.supplier_name
-        itemView.tvCustSuppId.text = supplier.supplier_id
-        itemView.tvCustSuppAddress.text = supplier.supplier_address
-        itemView.tvCustSuppTelp.text = supplier.supplier_telp
+    fun bindView(product: StockDetail) {
+        itemView.tvProductName.text = product.item_name
+        itemView.tvProductId.text = product.item_id
+        itemView.tvProdSellPrice.text =
+            "${context.getString(R.string.sell_price)} : Rp${product.selling_price}"
+        itemView.tvProdBuyPrice.text =
+            " | ${context.getString(R.string.purchase_price)} : Rp${product.purchase_price}"
+        itemView.tvProductQty.text =
+            "${context.getString(R.string.curr_stock)} : ${product.item_qty}"
 
         itemView.setOnClickListener {
-            dialog(supplier)
+            dialog(product)
         }
     }
 
-    private fun dialog(supplier: SupplierResult) {
+    private fun dialog(product: StockDetail) {
         dialogForm = AlertDialog.Builder(context)
         dialogForm.setTitle("Option Button")
         dialogForm.setItems(
@@ -39,13 +42,13 @@ class SupplierViewHolder(private val context: Context, view: View) : RecyclerVie
         ) { dialog, which ->
             when (which) {
                 0 -> {
-                    context.startActivity<EditActivity>(
-                        "code" to "supp",
-                        "supplier" to supplier
+                    context.startActivity<AddProductActivity>(
+                        "code" to "editProduct",
+                        "product" to product
                     )
                 }
                 1 -> {
-                    (context as SupplierActivity).deleteDialog(supplier.supplier_id.toString())
+                    (context as ProductActivity).deleteDialog(product.item_id)
                     dialog.dismiss()
                 }
             }

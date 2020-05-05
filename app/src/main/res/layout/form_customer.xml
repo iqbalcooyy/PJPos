@@ -5,10 +5,29 @@
         android:orientation="vertical"
         android:padding="10dp">
 
+    <ImageView
+            android:id="@+id/IvCloseDialog"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="end"
+            android:src="@drawable/ic_close"/>
+
+    <TextView
+            android:id="@+id/titleForm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:textSize="17sp"
+            android:fontFamily="@font/acme"
+            android:layout_gravity="center"
+            android:text="@string/title_1"/>
+
     <Spinner
             android:id="@+id/spinnerCustomer"
             android:layout_width="match_parent"
             android:layout_height="42dp"
+            android:layout_marginTop="10dp"
             android:foreground="@drawable/custom_border"
             android:spinnerMode="dropdown" />
 

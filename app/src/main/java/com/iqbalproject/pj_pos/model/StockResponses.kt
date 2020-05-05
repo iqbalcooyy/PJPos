@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 data class Stocks(
-    val status: String? = null,
+    val status: Boolean? = null,
     val message: String? = null,
     val result: List<StockDetail>? = null
 )

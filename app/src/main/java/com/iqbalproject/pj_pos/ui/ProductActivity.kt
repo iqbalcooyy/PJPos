@@ -10,36 +10,36 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.iqbalproject.pj_pos.R
-import com.iqbalproject.pj_pos.adapter.SupplierAdapter
-import com.iqbalproject.pj_pos.ui.viewModel.SupplierViewModel
+import com.iqbalproject.pj_pos.adapter.ProductAdapter
+import com.iqbalproject.pj_pos.ui.viewModel.ProductViewModel
 import com.iqbalproject.pj_pos.utils.Tools
-import kotlinx.android.synthetic.main.activity_supplier.*
+import kotlinx.android.synthetic.main.activity_product.*
 import org.jetbrains.anko.startActivity
 
-class SupplierActivity : AppCompatActivity() {
+class ProductActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: SupplierViewModel
+    private lateinit var viewModel: ProductViewModel
     private lateinit var dialogForm: AlertDialog.Builder
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_supplier)
+        setContentView(R.layout.activity_product)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "Data Supplier"
+        supportActionBar?.title = "Data Product"
 
-        viewModel = ViewModelProviders.of(this).get(SupplierViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(ProductViewModel::class.java)
 
-        loadDataSupplier()
+        loadDataProduct()
 
-        fabAddSupp.setOnClickListener {
-            startActivity<EditActivity>(
-                "code" to "addSupp"
+        fabAddProduct.setOnClickListener {
+            startActivity<AddProductActivity>(
+                "code" to "addProduct"
             )
         }
     }
 
     override fun onResume() {
-        loadDataSupplier()
+        loadDataProduct()
         super.onResume()
     }
 
@@ -55,34 +55,34 @@ class SupplierActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun loadDataSupplier() {
-        progressSupplier.visibility = View.VISIBLE
+    private fun loadDataProduct() {
+        progressProduct.visibility = View.VISIBLE
         viewModel.loadData().observe(this, Observer {
-            progressSupplier.visibility = View.GONE
-            when(it.status) {
+            progressProduct.visibility = View.GONE
+            when (it.status) {
                 true -> {
-                    rvSupplier.adapter = it.result?.let { suppList ->
-                        SupplierAdapter(suppList)
+                    rvProduct.adapter = it.result?.let { stockList ->
+                        ProductAdapter(stockList)
                     }
                 }
                 else -> {
-                    Tools.alertFailed(this, "Customer Response", "Data not found!")
+                    Tools.alertFailed(this, "Product Response", "Data not found!")
                 }
             }
         })
     }
 
-    fun deleteDialog(supplierId: String) {
+    fun deleteDialog(itemId: String) {
         dialogForm = AlertDialog.Builder(this)
         dialogForm.setTitle("Konfirmasi Hapus")
         dialogForm.setIcon(R.drawable.ic_delete)
-        dialogForm.setMessage("Apakah Anda yakin ingin menghapus $supplierId ?")
+        dialogForm.setMessage("Apakah Anda yakin ingin menghapus $itemId ?")
         dialogForm.setCancelable(true)
         dialogForm.setPositiveButton("Ok") { dialog: DialogInterface, i: Int ->
-            progressSupplier.visibility = View.VISIBLE
-            viewModel.deleteData(supplierId).observe(this, Observer {
-                progressSupplier.visibility = View.GONE
-                loadDataSupplier()
+            progressProduct.visibility = View.VISIBLE
+            viewModel.deleteData(itemId).observe(this, Observer {
+                progressProduct.visibility = View.GONE
+                loadDataProduct()
                 when (it.status) {
                     true -> {
                         Tools.alertSuccess(this, "Sukses Hapus", it.message.toString(), false)

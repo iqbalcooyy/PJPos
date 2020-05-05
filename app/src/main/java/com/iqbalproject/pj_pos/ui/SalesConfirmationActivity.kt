@@ -15,7 +15,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.lifecycle.get
 import com.iqbalproject.pj_pos.R
 import com.iqbalproject.pj_pos.adapter.PdfDocumentAdapter
 import com.iqbalproject.pj_pos.adapter.SalesConfirmationAdapter
@@ -93,7 +92,7 @@ class SalesConfirmationActivity : AppCompatActivity() {
                                 when (status) {
                                     true -> {
                                         progressConfirmSale.visibility = View.GONE
-                                        Tools.alertSuccess(this@SalesConfirmationActivity, "Success", saleRes.message.toString())
+                                        Tools.alertSuccess(this@SalesConfirmationActivity, "Success", saleRes.message.toString(), false)
                                         trxId = saleRes.id.toString()
                                         statusPay = saleRes.status_sale.toString()
                                         tvCodeTrxSale.text = trxId

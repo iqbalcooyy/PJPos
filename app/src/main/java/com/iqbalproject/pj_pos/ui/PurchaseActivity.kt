@@ -10,7 +10,7 @@ import com.iqbalproject.pj_pos.R
 import com.iqbalproject.pj_pos.adapter.StockPurchaseAdapter
 import com.iqbalproject.pj_pos.adapter.SpinnerSuppAdapter
 import com.iqbalproject.pj_pos.model.StockDetail
-import com.iqbalproject.pj_pos.ui.viewModel.StocksViewModel
+import com.iqbalproject.pj_pos.ui.viewModel.ProductViewModel
 import com.iqbalproject.pj_pos.ui.viewModel.SupplierViewModel
 import com.iqbalproject.pj_pos.utils.Tools
 import kotlinx.android.synthetic.main.activity_purchase.*
@@ -19,7 +19,7 @@ import org.jetbrains.anko.startActivity
 class PurchaseActivity : AppCompatActivity() {
 
     private lateinit var viewModelSupplier: SupplierViewModel
-    private lateinit var viewModelStock: StocksViewModel
+    private lateinit var viewModelStock: ProductViewModel
     private lateinit var supplierName: String
     private lateinit var supplierId: String
 
@@ -30,7 +30,7 @@ class PurchaseActivity : AppCompatActivity() {
         setContentView(R.layout.activity_purchase)
 
         viewModelSupplier = ViewModelProviders.of(this).get(SupplierViewModel::class.java)
-        viewModelStock = ViewModelProviders.of(this).get(StocksViewModel::class.java)
+        viewModelStock = ViewModelProviders.of(this).get(ProductViewModel::class.java)
 
         viewModelSupplier.loadData().observe(this, Observer { suppliers ->
             spinnerSupplier.adapter = suppliers.result?.let {
@@ -55,19 +55,20 @@ class PurchaseActivity : AppCompatActivity() {
             }
         })
 
-        viewModelStock.getStatus().observe(this, Observer {
-            if (it == false) {
-                rvItemsPurchase.visibility = View.GONE
-                tvNullPurc.visibility = View.VISIBLE
-            } else {
-                rvItemsPurchase.visibility = View.VISIBLE
-                tvNullPurc.visibility = View.GONE
-            }
-        })
+        viewModelStock.loadData().observe(this, Observer {
+            when (it.status) {
+                false -> {
+                    rvItemsPurchase.visibility = View.GONE
+                    tvNullPurc.visibility = View.VISIBLE
+                }
+                else -> {
+                    rvItemsPurchase.visibility = View.VISIBLE
+                    tvNullPurc.visibility = View.GONE
 
-        viewModelStock.getData().observe(this, Observer {
-            it?.result?.let {
-                rvItemsPurchase.adapter = StockPurchaseAdapter(it)
+                    it?.result?.let { stockList ->
+                        rvItemsPurchase.adapter = StockPurchaseAdapter(stockList)
+                    }
+                }
             }
         })
 

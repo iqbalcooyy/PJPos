@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.AdapterView
+import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
@@ -16,24 +17,25 @@ import com.iqbalproject.pj_pos.adapter.SpinnerCustAdapter
 import com.iqbalproject.pj_pos.adapter.StockSalesAdapter
 import com.iqbalproject.pj_pos.model.StockDetail
 import com.iqbalproject.pj_pos.ui.viewModel.CustomerViewModel
-import com.iqbalproject.pj_pos.ui.viewModel.StocksViewModel
+import com.iqbalproject.pj_pos.ui.viewModel.ProductViewModel
 import com.iqbalproject.pj_pos.utils.Tools
 import com.shashank.sony.fancytoastlib.FancyToast
 import kotlinx.android.synthetic.main.activity_sales.*
 import kotlinx.android.synthetic.main.form_customer.view.*
 import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.toast
 
 class SalesActivity : AppCompatActivity() {
 
-    private lateinit var viewModelStock: StocksViewModel
+    private lateinit var viewModelStock: ProductViewModel
     private lateinit var viewModelCustomer: CustomerViewModel
+    private lateinit var dialog: AlertDialog
     private lateinit var dialogForm: AlertDialog.Builder
     private lateinit var dialogView: View
     private lateinit var inflater: LayoutInflater
     private lateinit var spinnerCustomer: Spinner
     private lateinit var customerAddress: TextView
     private lateinit var customerTelp: TextView
+    private lateinit var ivCloseDialog: ImageView
     var saleConfirm: MutableList<StockDetail> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,21 +44,22 @@ class SalesActivity : AppCompatActivity() {
 
         tvTransDate.text = Tools.getCurrentDate()
 
-        viewModelStock = ViewModelProviders.of(this).get(StocksViewModel::class.java)
+        viewModelStock = ViewModelProviders.of(this).get(ProductViewModel::class.java)
 
-        viewModelStock.getStatus().observe(this, Observer {
-            if (it == false) {
-                rvItemsSale.visibility = View.GONE
-                tvNull.visibility = View.VISIBLE
-            } else {
-                rvItemsSale.visibility = View.VISIBLE
-                tvNull.visibility = View.GONE
-            }
-        })
+        viewModelStock.loadData().observe(this, Observer {
+            when (it.status) {
+                false -> {
+                    rvItemsSale.visibility = View.GONE
+                    tvNull.visibility = View.VISIBLE
+                }
+                else -> {
+                    rvItemsSale.visibility = View.VISIBLE
+                    tvNull.visibility = View.GONE
 
-        viewModelStock.getData().observe(this, Observer {
-            it?.result?.let { stockList ->
-                rvItemsSale.adapter = StockSalesAdapter(stockList)
+                    it.result?.let { stockList ->
+                        rvItemsSale.adapter = StockSalesAdapter(stockList)
+                    }
+                }
             }
         })
 
@@ -82,6 +85,7 @@ class SalesActivity : AppCompatActivity() {
         spinnerCustomer = dialogView.spinnerCustomer
         customerAddress = dialogView.tvCustAddress
         customerTelp = dialogView.tvCustTelp
+        ivCloseDialog = dialogView.IvCloseDialog
 
         //get customers
         viewModelCustomer = ViewModelProviders.of(this).get(CustomerViewModel::class.java)
@@ -95,7 +99,12 @@ class SalesActivity : AppCompatActivity() {
                 override fun onNothingSelected(parent: AdapterView<*>?) {
                 }
 
-                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
                     customerAddress.text = it.result?.get(position)?.cust_address
                     customerTelp.text = it.result?.get(position)?.cust_telp
 
@@ -111,19 +120,23 @@ class SalesActivity : AppCompatActivity() {
 
         //show dialogform
         dialogForm.setView(dialogView)
-        dialogForm.setTitle("Detail Customer")
-        dialogForm.setCancelable(false)
+        dialogForm.setCancelable(true)
         dialogForm.setPositiveButton("Process", object : DialogInterface.OnClickListener {
             override fun onClick(p0: DialogInterface?, p1: Int) {
                 startActivity<SalesConfirmationActivity>("saleConfirm" to saleConfirm)
             }
         })
-        dialogForm.setNegativeButton("Cancel", object : DialogInterface.OnClickListener {
-            override fun onClick(dialog: DialogInterface?, p1: Int) {
-                dialog?.dismiss()
+        dialogForm.setNeutralButton("Add Customer", object : DialogInterface.OnClickListener {
+            override fun onClick(dialog: DialogInterface?, which: Int) {
+                startActivity<EditActivity>(
+                    "code" to "addCust"
+                )
             }
         })
 
-        dialogForm.show()
+        dialog = dialogForm.show()
+        ivCloseDialog.setOnClickListener {
+            dialog.dismiss()
+        }
     }
 }

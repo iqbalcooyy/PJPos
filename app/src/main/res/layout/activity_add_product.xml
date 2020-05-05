@@ -5,86 +5,122 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="10dp"
-        tools:context=".ui.EditActivity">
+        tools:context=".ui.AddProductActivity">
 
     <EditText
-            android:id="@+id/etId"
+            android:id="@+id/etIdProd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_border"
+            android:enabled="false"
             android:fontFamily="@font/acme"
-            android:hint="Supplier ID"
+            android:hint="@string/prod_id"
             android:paddingStart="10dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:singleLine="true"
-            android:enabled="false"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-            android:id="@+id/etName"
+            android:id="@+id/etNameProd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:background="@drawable/custom_border"
             android:fontFamily="@font/acme"
-            android:hint="Supplier Name"
+            android:hint="@string/prod_name"
+            android:inputType="textCapWords"
             android:paddingStart="10dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:layout_marginTop="15dp"
             android:singleLine="true"
             android:textSize="15sp"
-            android:inputType="textCapWords"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etId" />
+            app:layout_constraintTop_toBottomOf="@+id/etIdProd" />
 
     <EditText
-            android:id="@+id/etAddress"
+            android:id="@+id/etQtyProd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:background="@drawable/custom_border"
             android:fontFamily="@font/acme"
-            android:hint="Supplier Address"
-            android:paddingStart="10dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:singleLine="true"
-            android:textSize="15sp"
-            android:inputType="textCapWords"
-            android:layout_marginTop="15dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etName" />
-
-    <EditText
-            android:id="@+id/etTelp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/custom_border"
-            android:fontFamily="@font/acme"
-            android:hint="Supplier Telp."
-            android:paddingStart="10dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:singleLine="true"
-            android:textSize="15sp"
-            android:layout_marginTop="15dp"
+            android:hint="@string/curr_stock"
             android:inputType="number"
+            android:paddingStart="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:singleLine="true"
+            android:textSize="15sp"
+            android:enabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etAddress" />
+            app:layout_constraintTop_toBottomOf="@+id/etNameProd" />
+
+    <EditText
+            android:id="@+id/etUomProd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/custom_border"
+            android:fontFamily="@font/acme"
+            android:hint="@string/prod_uom"
+            android:paddingStart="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:singleLine="true"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etQtyProd" />
+
+    <EditText
+            android:id="@+id/etSellPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/custom_border"
+            android:fontFamily="@font/acme"
+            android:hint="@string/sell_price"
+            android:inputType="number"
+            android:paddingStart="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:singleLine="true"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etUomProd" />
+
+    <EditText
+            android:id="@+id/etBuyPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/custom_border"
+            android:fontFamily="@font/acme"
+            android:hint="@string/purchase_price"
+            android:inputType="number"
+            android:paddingStart="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:singleLine="true"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etSellPrice" />
 
     <Button
-            android:id="@+id/btnSimpan"
+            android:id="@+id/btnSaveProd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             android:fontFamily="@font/acme"
-            android:text="Simpan"
+            android:text="@string/btn_save"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:textSize="20sp"
@@ -93,10 +129,11 @@
             app:layout_constraintStart_toStartOf="parent" />
 
     <com.agrawalsuneet.dotsloader.loaders.CircularDotsLoader
-            android:id="@+id/progressSimpan"
+            android:id="@+id/progressSaveProd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/btnSimpan"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/btnSaveProd"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -107,7 +144,6 @@
             app:loader_firstShadowColor="@color/colorPrimary"
             app:loader_secondShadowColor="@color/colorPrimary"
             app:loader_selectedColor="@color/colorPrimary"
-            app:loader_showRunningShadow="true"
-            android:visibility="gone"/>
+            app:loader_showRunningShadow="true" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

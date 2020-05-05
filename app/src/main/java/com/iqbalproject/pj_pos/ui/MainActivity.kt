@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.iqbalproject.pj_pos.R
 import com.iqbalproject.pj_pos.adapter.MainMenuAdapter
 import com.iqbalproject.pj_pos.utils.SessionManager
+import com.iqbalproject.pj_pos.utils.Tools
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
@@ -35,10 +36,11 @@ class MainActivity : AppCompatActivity() {
             when (position) {  // related to strings.xml -> main_menu
                 0 -> startActivity<SalesActivity>()
                 1 -> startActivity<PurchaseActivity>()
+                2 -> startActivity<ProductActivity>()
                 3 -> startActivity<SupplierActivity>()
                 4 -> startActivity<CustomerActivity>()
                 6 -> logoutProcess()
-                else -> toast("Under Development :)")
+                else -> Tools.toastWarning(this, "Under Development :)")
             }
         }
     }

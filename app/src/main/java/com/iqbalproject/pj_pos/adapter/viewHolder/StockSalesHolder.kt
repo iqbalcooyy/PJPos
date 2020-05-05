@@ -22,7 +22,8 @@ class StockSalesHolder(private val context: Context, view: View) : RecyclerView.
     fun bindView(stocks: StockDetail, stocksList: List<StockDetail>) {
         itemView.tvItemName.text = stocks.item_name
         itemView.tvItemStock.text = "Stock: ${stocks.item_qty} ${stocks.uom}"
-        itemView.tvItemPrice.text = "Price: ${Tools.convertRupiahsFormat(stocks.selling_price.toDouble())}/${stocks.uom}"
+        itemView.tvItemPrice.text =
+            "Price: ${Tools.convertRupiahsFormat(stocks.selling_price.toDouble())}/${stocks.uom}"
         tvTotalPay = (context as SalesActivity).tvTotalPay
         tvTotalTerbilang = context.tvTotalTerbilang
 
@@ -30,12 +31,14 @@ class StockSalesHolder(private val context: Context, view: View) : RecyclerView.
             itemView.tvItemName.setTextColor(context.resources.getColor(android.R.color.holo_red_light))
             itemView.tvItemStock.setTextColor(context.resources.getColor(android.R.color.holo_red_light))
             itemView.tvItemPrice.setTextColor(context.resources.getColor(android.R.color.holo_red_light))
-            itemView.btnAddItem.backgroundTintList = context.resources.getColorStateList(android.R.color.darker_gray)
-            itemView.btnRemoveItem.backgroundTintList = context.resources.getColorStateList(android.R.color.darker_gray)
+            itemView.btnAddItem.backgroundTintList =
+                context.resources.getColorStateList(android.R.color.darker_gray)
+            itemView.btnRemoveItem.backgroundTintList =
+                context.resources.getColorStateList(android.R.color.darker_gray)
         }
 
         itemView.btnAddItem.onClick {
-            if (stocks.item_qty == 0) {
+            if (stocks.item_qty == 0 || qty == stocks.item_qty) {
                 Tools.toastWarning(context, "Out of Stock")
             } else {
                 qty += 1

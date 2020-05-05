@@ -2,14 +2,32 @@
     <string name="app_name">PJ-Pos</string>
     <string name="app_version">PJ-Pos 1.0</string>
 
+    <string name="menu_1">Sale</string>
+    <string name="menu_2">Purchase</string>
+    <string name="menu_3">Product</string>
+    <string name="menu_4">Supplier</string>
+    <string name="menu_5">Customer</string>
+    <string name="menu_6">Report</string>
+    <string name="menu_7">Logout</string>
+
+    <string name="btn_save">Save</string>
+    <string name="sell_price">Selling Price</string>
+    <string name="purchase_price">Purchase Price</string>
+    <string name="curr_stock">Current Stock</string>
+    <string name="prod_id">Product ID</string>
+    <string name="prod_name">Product Name</string>
+    <string name="prod_uom">Product UOM</string>
+
+    <string name="title_1">Select Customer</string>
+
     <string-array name="main_menu">
-        <item>Sale</item>
-        <item>Purchase</item>
-        <item>Stock</item>
-        <item>Supplier</item>
-        <item>Customer</item>
-        <item>Report</item>
-        <item>Logout</item>
+        <item>@string/menu_1</item>
+        <item>@string/menu_2</item>
+        <item>@string/menu_3</item>
+        <item>@string/menu_4</item>
+        <item>@string/menu_5</item>
+        <item>@string/menu_6</item>
+        <item>@string/menu_7</item>
     </string-array>
 
     <array name="main_menu_icon">

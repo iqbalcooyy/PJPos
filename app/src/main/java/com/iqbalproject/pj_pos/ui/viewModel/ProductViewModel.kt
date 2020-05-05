@@ -4,23 +4,23 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.iqbalproject.pj_pos.model.EditResponse
-import com.iqbalproject.pj_pos.model.Suppliers
+import com.iqbalproject.pj_pos.model.Stocks
 import com.iqbalproject.pj_pos.network.NetworkConfig
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SupplierViewModel : ViewModel() {
+class ProductViewModel : ViewModel() {
 
-    fun loadData(): LiveData<Suppliers> {
-        val data = MutableLiveData<Suppliers>()
+    fun loadData(): LiveData<Stocks> {
+        val data = MutableLiveData<Stocks>()
 
-        NetworkConfig().api().getSuppliers().enqueue(object : Callback<Suppliers> {
-            override fun onFailure(call: Call<Suppliers>, t: Throwable) {
+        NetworkConfig().api().getStocks().enqueue(object : Callback<Stocks> {
+            override fun onFailure(call: Call<Stocks>, t: Throwable) {
                 data.value = null
             }
 
-            override fun onResponse(call: Call<Suppliers>, response: Response<Suppliers>) {
+            override fun onResponse(call: Call<Stocks>, response: Response<Stocks>) {
                 data.value = response.body()
             }
         })
@@ -29,16 +29,18 @@ class SupplierViewModel : ViewModel() {
     }
 
     fun addData(
-        suppName: String,
-        suppAddress: String,
-        suppTelp: String
+        itemName: String,
+        uom: String,
+        sellingPrice: Int,
+        purchasePrice: Int
     ): LiveData<EditResponse> {
         val data = MutableLiveData<EditResponse>()
 
-        NetworkConfig().api().addSupplier(
-            supplier_name = suppName,
-            supplier_address = suppAddress,
-            supplier_telp = suppTelp
+        NetworkConfig().api().addStocks(
+            item_name = itemName,
+            uom = uom,
+            selling_price = sellingPrice,
+            purchase_price = purchasePrice
         ).enqueue(object : Callback<EditResponse> {
             override fun onFailure(call: Call<EditResponse>, t: Throwable) {
                 data.value = null
@@ -53,18 +55,22 @@ class SupplierViewModel : ViewModel() {
     }
 
     fun editData(
-        suppId: String,
-        suppName: String,
-        suppAddress: String,
-        suppTelp: String
+        itemId: String,
+        itemName: String,
+        uom: String,
+        itemQty: Int,
+        sellingPrice: Int,
+        purchasePrice: Int
     ): LiveData<EditResponse> {
         val data = MutableLiveData<EditResponse>()
 
-        NetworkConfig().api().editSupplier(
-            supplier_id = suppId,
-            supplier_name = suppName,
-            supplier_address = suppAddress,
-            supplier_telp = suppTelp
+        NetworkConfig().api().editStocks(
+            item_id = itemId,
+            item_name = itemName,
+            uom = uom,
+            item_qty = itemQty,
+            selling_price = sellingPrice,
+            purchase_price = purchasePrice
         ).enqueue(object : Callback<EditResponse> {
             override fun onFailure(call: Call<EditResponse>, t: Throwable) {
                 data.value = null
@@ -78,10 +84,10 @@ class SupplierViewModel : ViewModel() {
         return data
     }
 
-    fun deleteData(suppId: String): LiveData<EditResponse> {
+    fun deleteData(itemId: String): LiveData<EditResponse> {
         val data = MutableLiveData<EditResponse>()
 
-        NetworkConfig().api().deleteSupplier(supplier_id = suppId)
+        NetworkConfig().api().deleteStocks(item_id = itemId)
             .enqueue(object : Callback<EditResponse> {
                 override fun onFailure(call: Call<EditResponse>, t: Throwable) {
                     data.value = null
