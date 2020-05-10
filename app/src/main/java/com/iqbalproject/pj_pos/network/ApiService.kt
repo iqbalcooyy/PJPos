@@ -54,15 +54,6 @@ interface ApiService {
         @Field("purchase_price[]") purchase_price: List<Int>
     ): Call<TrxResponses>
 
-    @POST("trx_acc_receivable")
-    @FormUrlEncoded
-    fun trx_acc_receivable(
-        @Header("pjpos_key") api_key: String = Constants.API_KEY,
-        @Field("sale_id") sale_id: String,
-        @Field("cust_id") cust_id: String,
-        @Field("ar_total") ar_total: Int
-    ): Call<TrxAccReceivResponse>
-
     @POST("supplier")
     @FormUrlEncoded
     fun addSupplier(
@@ -144,5 +135,42 @@ interface ApiService {
         @Header("pjpos_key") api_key: String = Constants.API_KEY,
         @Field("item_id") item_id: String
     ): Call<EditResponse>
+
+    @POST("report")
+    @FormUrlEncoded
+    fun getReport(
+        @Header("pjpos_key") api_key: String = Constants.API_KEY,
+        @Field("start_date") start_date: String,
+        @Field("end_date") end_date: String
+    ): Call<GetReportResponse>
+
+    @POST("trx_acc_receivable")
+    @FormUrlEncoded
+    fun trx_acc_receivable(
+        @Header("pjpos_key") api_key: String = Constants.API_KEY,
+        @Field("sale_id") sale_id: String,
+        @Field("cust_id") cust_id: String,
+        @Field("ar_total") ar_total: Int
+    ): Call<TrxAccReceivResponse>
+
+    @GET("trx_acc_receivable")
+    fun getAccReceivable(
+        @Header("pjpos_key") api_key: String = Constants.API_KEY
+    ): Call<GetAccReceivResponse>
+
+    @PUT("trx_acc_receivable")
+    @FormUrlEncoded
+    fun editAccReceivable(
+        @Header("pjpos_key") api_key: String = Constants.API_KEY,
+        @Field("ar_id") ar_id: String,
+        @Field("ar_paid") ar_paid: String,
+        @Field("notes") notes: String? = ""
+    ): Call<TrxAccReceivResponse>
+
+    @GET("detail_acc_receivable")
+    fun getDetailAccReceivable(
+        @Header("pjpos_key") api_key: String = Constants.API_KEY,
+        @Query("ar_id") ar_id: String
+    ): Call<DetailAccReceivRespon>
 
 }

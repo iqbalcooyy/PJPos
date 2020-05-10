@@ -1,6 +1,8 @@
 package com.iqbalproject.pj_pos.ui
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import androidx.appcompat.app.AppCompatActivity
@@ -28,6 +30,8 @@ class PurchaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_purchase)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = getString(R.string.menu_2)
 
         viewModelSupplier = ViewModelProviders.of(this).get(SupplierViewModel::class.java)
         viewModelStock = ViewModelProviders.of(this).get(ProductViewModel::class.java)
@@ -73,7 +77,6 @@ class PurchaseActivity : AppCompatActivity() {
         })
 
         btnProcessSupp.setOnClickListener {
-            //Log.d("PURCHASEE", purchaseConfirm.toString())
             if (purchaseConfirm.isNullOrEmpty()) {
                 Tools.toastWarning(this, "Harap Lengkapi Data!")
             } else {
@@ -84,5 +87,18 @@ class PurchaseActivity : AppCompatActivity() {
                 )
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_history, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> finish()
+            R.id.btn_history -> Tools.toastWarning(this, "Under Development :)")
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

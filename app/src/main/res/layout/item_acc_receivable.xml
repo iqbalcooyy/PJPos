@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="10dp"
@@ -13,64 +14,78 @@
             android:padding="10dp">
 
         <TextView
-                android:id="@+id/tvItemNameProd"
+                android:id="@+id/tvCustNameAr"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/acme"
-                android:text="Semen Merah Putih"
+                android:text="Bpk. Muhammad Iqbal (CUST001)"
                 android:textColor="@color/colorPrimary"
-                android:textSize="15sp"
+                android:textSize="13sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/tvStatusAr"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-                android:id="@+id/tvItemId"
+                android:id="@+id/tvStatusAr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/acme"
-                android:text="PJ007"
-                android:textColor="@android:color/black"
+                android:text="OPEN"
+                android:textColor="@color/colorAccent"
                 android:textSize="13sp"
-                app:layout_constraintBottom_toBottomOf="@+id/tvItemNameProd"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/tvCustNameAr"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tvItemNameProd" />
+                app:layout_constraintTop_toTopOf="@+id/tvCustNameAr" />
 
         <TextView
-                android:id="@+id/tvSalePrice"
+                android:id="@+id/tvArId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/acme"
-                android:text="Harga Jual : Rp 55,000"
+                android:text="AR ID : AR0905200001"
                 android:textColor="@android:color/black"
-                android:textSize="13sp"
+                android:textSize="10sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvItemNameProd" />
+                app:layout_constraintTop_toBottomOf="@+id/tvCustNameAr" />
 
         <TextView
-                android:id="@+id/tvPurchasePrice"
+                android:id="@+id/tvSaleIdAr"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/acme"
-                android:text=" | Harga Beli : Rp 55,000"
+                android:text=" | Sale ID : S0905200003"
                 android:textColor="@android:color/black"
-                android:textSize="13sp"
-                app:layout_constraintBottom_toBottomOf="@+id/tvSalePrice"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tvSalePrice"
-                app:layout_constraintTop_toTopOf="@+id/tvSalePrice" />
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvArId"
+                app:layout_constraintEnd_toStartOf="@+id/tvArTotal"
+                app:layout_constraintStart_toEndOf="@+id/tvArId"
+                app:layout_constraintTop_toTopOf="@+id/tvArId" />
 
         <TextView
-                android:id="@+id/tvCurrStock"
+                android:id="@+id/tvArDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/acme"
-                android:text="Current Stock : 50 zak"
+                android:text="2020-05-09"
                 android:textColor="@android:color/black"
-                android:textSize="13sp"
+                android:textSize="10sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvSalePrice" />
+                app:layout_constraintTop_toBottomOf="@+id/tvArId" />
+
+        <TextView
+                android:id="@+id/tvArTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/acme"
+                android:text="Rp 800,000"
+                android:textColor="@android:color/black"
+                android:textSize="17sp"
+                app:layout_constraintStart_toEndOf="@+id/tvSaleIdAr"
+                app:layout_constraintBottom_toBottomOf="@+id/tvArDate"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvSaleIdAr" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

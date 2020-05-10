@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.iqbalproject.pj_pos.R
 import com.iqbalproject.pj_pos.model.StockDetail
 import com.iqbalproject.pj_pos.ui.SalesActivity
 import com.iqbalproject.pj_pos.utils.Tools
@@ -35,6 +36,14 @@ class StockSalesHolder(private val context: Context, view: View) : RecyclerView.
                 context.resources.getColorStateList(android.R.color.darker_gray)
             itemView.btnRemoveItem.backgroundTintList =
                 context.resources.getColorStateList(android.R.color.darker_gray)
+        } else {
+            itemView.tvItemName.setTextColor(context.resources.getColor(android.R.color.black))
+            itemView.tvItemStock.setTextColor(context.resources.getColor(R.color.colorGray))
+            itemView.tvItemPrice.setTextColor(context.resources.getColor(R.color.colorGray))
+            itemView.btnAddItem.backgroundTintList =
+                context.resources.getColorStateList(R.color.colorAccent)
+            itemView.btnRemoveItem.backgroundTintList =
+                context.resources.getColorStateList(R.color.colorAccent)
         }
 
         itemView.btnAddItem.onClick {

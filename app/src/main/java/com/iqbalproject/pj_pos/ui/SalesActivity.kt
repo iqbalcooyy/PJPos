@@ -2,12 +2,12 @@ package com.iqbalproject.pj_pos.ui
 
 import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ImageView
-import android.widget.Spinner
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -36,11 +36,14 @@ class SalesActivity : AppCompatActivity() {
     private lateinit var customerAddress: TextView
     private lateinit var customerTelp: TextView
     private lateinit var ivCloseDialog: ImageView
+    private lateinit var etDiscount: EditText
     var saleConfirm: MutableList<StockDetail> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sales)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = getString(R.string.menu_1)
 
         tvTransDate.text = Tools.getCurrentDate()
 
@@ -77,6 +80,19 @@ class SalesActivity : AppCompatActivity() {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_history, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> finish()
+            R.id.btn_history -> Tools.toastWarning(this, "Under Development :)")
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     private fun dialog() {
         //declarations
         dialogForm = AlertDialog.Builder(this)
@@ -86,6 +102,7 @@ class SalesActivity : AppCompatActivity() {
         customerAddress = dialogView.tvCustAddress
         customerTelp = dialogView.tvCustTelp
         ivCloseDialog = dialogView.IvCloseDialog
+        etDiscount = dialogView.etDiscount
 
         //get customers
         viewModelCustomer = ViewModelProviders.of(this).get(CustomerViewModel::class.java)
@@ -123,7 +140,10 @@ class SalesActivity : AppCompatActivity() {
         dialogForm.setCancelable(true)
         dialogForm.setPositiveButton("Process", object : DialogInterface.OnClickListener {
             override fun onClick(p0: DialogInterface?, p1: Int) {
-                startActivity<SalesConfirmationActivity>("saleConfirm" to saleConfirm)
+                startActivity<SalesConfirmationActivity>(
+                    "saleConfirm" to saleConfirm,
+                    "discount" to etDiscount.text.toString()
+                )
             }
         })
         dialogForm.setNeutralButton("Add Customer", object : DialogInterface.OnClickListener {

@@ -28,6 +28,7 @@
                 android:fontFamily="@font/acme"
                 android:textSize="15sp"
                 android:textStyle="italic"
+                android:textColor="@color/colorGray"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
@@ -37,6 +38,7 @@
                 android:fontFamily="@font/acme"
                 android:textSize="15sp"
                 android:textStyle="italic"
+                android:textColor="@color/colorGray"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 

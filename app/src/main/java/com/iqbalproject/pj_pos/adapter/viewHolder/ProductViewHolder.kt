@@ -17,13 +17,13 @@ class ProductViewHolder(private val context: Context, view: View) : RecyclerView
     private lateinit var dialogForm: AlertDialog.Builder
 
     fun bindView(product: StockDetail) {
-        itemView.tvProductName.text = product.item_name
-        itemView.tvProductId.text = product.item_id
-        itemView.tvProdSellPrice.text =
+        itemView.tvItemNameProd.text = product.item_name
+        itemView.tvItemId.text = product.item_id
+        itemView.tvSalePrice.text =
             "${context.getString(R.string.sell_price)} : Rp${product.selling_price}"
-        itemView.tvProdBuyPrice.text =
+        itemView.tvPurchasePrice.text =
             " | ${context.getString(R.string.purchase_price)} : Rp${product.purchase_price}"
-        itemView.tvProductQty.text =
+        itemView.tvCurrStock.text =
             "${context.getString(R.string.curr_stock)} : ${product.item_qty}"
 
         itemView.setOnClickListener {

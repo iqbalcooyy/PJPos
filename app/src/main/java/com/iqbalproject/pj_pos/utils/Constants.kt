@@ -21,5 +21,8 @@ class Constants {
         const val STAT_HUTANG_1 =  "OPEN"
         const val STAT_HUTANG_2 =  "CLOSED"
 
+        const val SALES = "SALES"
+        const val PURCHASE = "PURCHASE"
+
     }
 }

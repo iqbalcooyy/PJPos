@@ -36,10 +36,12 @@ class MainActivity : AppCompatActivity() {
             when (position) {  // related to strings.xml -> main_menu
                 0 -> startActivity<SalesActivity>()
                 1 -> startActivity<PurchaseActivity>()
-                2 -> startActivity<ProductActivity>()
-                3 -> startActivity<SupplierActivity>()
-                4 -> startActivity<CustomerActivity>()
-                6 -> logoutProcess()
+                2 -> startActivity<AccReceivableActivity>()
+                3 -> startActivity<ProductActivity>()
+                4 -> startActivity<SupplierActivity>()
+                5 -> startActivity<CustomerActivity>()
+                6 -> startActivity<ReportActivity>()
+                7 -> logoutProcess()
                 else -> Tools.toastWarning(this, "Under Development :)")
             }
         }
