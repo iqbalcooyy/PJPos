@@ -98,7 +98,7 @@ class SalesConfirmationActivity : AppCompatActivity() {
                                 sales.last().id_dummy.toString(),
                                 itemId,
                                 0,
-                                total_payment,
+                                toBePaid,
                                 saleQty,
                                 paid
                             )
@@ -175,7 +175,12 @@ class SalesConfirmationActivity : AppCompatActivity() {
 
     private fun initData() {
         sales.addAll(intent.getParcelableArrayListExtra("saleConfirm"))
-        discount = intent.getStringExtra("discount")
+        intent.getStringExtra("discount").let {
+            discount = if (it.isNullOrEmpty())
+                "0"
+            else
+                it
+        }
         total_payment = 0
 
         for (i in sales.indices) {
