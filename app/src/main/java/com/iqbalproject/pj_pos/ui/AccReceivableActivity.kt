@@ -10,10 +10,12 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.iqbalproject.pj_pos.R
 import com.iqbalproject.pj_pos.adapter.AccReceivableAdapter
+import com.iqbalproject.pj_pos.model.AccReceivable
 import com.iqbalproject.pj_pos.ui.viewModel.AccReceivViewModel
 import com.iqbalproject.pj_pos.utils.Tools
 import kotlinx.android.synthetic.main.activity_acc_receivable.*
@@ -28,6 +30,10 @@ class AccReceivableActivity : AppCompatActivity() {
     private lateinit var etBayar: EditText
     private lateinit var etNotes: EditText
     private lateinit var tvArTotal: TextView
+    private var menuItem: MenuItem? = null
+    private var searchView: SearchView? = null
+    private var accRecevable: MutableList<AccReceivable> = mutableListOf()
+    private var accRecevableFilter: MutableList<AccReceivable> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +53,30 @@ class AccReceivableActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
+        menuItem = menu?.findItem(R.id.btn_search)
+        searchView = menuItem?.actionView as SearchView
+
+        searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                accRecevableFilter.clear()
+                for (i in accRecevable.indices) {
+                    if (accRecevable[i].cust_name!!.toLowerCase().trim().contains(newText.toString().toLowerCase().trim()) ||
+                        accRecevable[i].ar_id!!.toLowerCase().trim().contains(newText.toString().toLowerCase().trim()))
+                    {
+                        accRecevableFilter.add(accRecevable[i])
+                    }
+                }
+
+                rvAccReceivable.adapter = AccReceivableAdapter(accRecevableFilter)
+                return true
+            }
+
+        })
+
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -62,7 +92,9 @@ class AccReceivableActivity : AppCompatActivity() {
         viewModel.loadData().observe(this, Observer {
             progressAccReceivable.visibility = View.GONE
             rvAccReceivable.adapter = it.result?.let { listReceivable ->
-                AccReceivableAdapter(listReceivable)
+                accRecevable.clear()
+                accRecevable.addAll(listReceivable)
+                AccReceivableAdapter(accRecevable)
             }
         })
     }

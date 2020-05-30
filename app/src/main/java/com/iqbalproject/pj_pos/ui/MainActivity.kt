@@ -10,7 +10,6 @@ import com.iqbalproject.pj_pos.utils.SessionManager
 import com.iqbalproject.pj_pos.utils.Tools
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.toast
 
 class MainActivity : AppCompatActivity() {
 

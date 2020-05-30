@@ -1,12 +1,16 @@
 package com.iqbalproject.pj_pos.adapter.viewHolder
 
+import android.app.Activity
 import android.content.Context
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.RecyclerView
 import com.iqbalproject.pj_pos.model.StockDetail
 import com.iqbalproject.pj_pos.ui.PurchaseActivity
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.item_purchase.view.*
+import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil
 import org.jetbrains.anko.sdk27.coroutines.onCheckedChange
 
 class StockPurchaseHolder(private val context: Context, view: View) :
@@ -14,6 +18,22 @@ class StockPurchaseHolder(private val context: Context, view: View) :
 
     fun bindView(stock: StockDetail) {
         itemView.tvItemNamePurc.text = stock.item_name
+        itemView.etBanyaknya.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_NEXT || actionId == EditorInfo.IME_ACTION_DONE) {
+                UIUtil.hideKeyboard(context as Activity)
+                return@setOnEditorActionListener true
+            }
+
+            false
+        }
+        itemView.etTotalHarga.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_NEXT || actionId == EditorInfo.IME_ACTION_DONE) {
+                UIUtil.hideKeyboard(context as Activity)
+                return@setOnEditorActionListener true
+            }
+
+            false
+        }
 
         itemView.cbItemPurchase.onCheckedChange { buttonView, isChecked ->
             if (isChecked) {

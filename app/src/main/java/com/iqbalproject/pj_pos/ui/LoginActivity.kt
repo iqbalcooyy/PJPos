@@ -15,7 +15,6 @@ import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.clearTop
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.newTask
-import org.jetbrains.anko.startActivity
 
 class LoginActivity : AppCompatActivity() {
 
