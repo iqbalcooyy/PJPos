@@ -6,7 +6,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.0"
+    buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.iqbalproject.pj_pos"
         minSdkVersion 21
@@ -71,4 +71,5 @@ dependencies {
     implementation 'com.itextpdf:itextg:5.5.10'
     implementation 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:2.1.0'
 
+    implementation 'com.google.android.material:material:1.1.0'
 }

@@ -54,23 +54,28 @@ class LoginActivity : AppCompatActivity() {
 
     private fun loginProcess() {
         progressLogin.visibility = View.VISIBLE
-        viewModel.loadData(userId.toString(), password.toString()).observe(this, Observer {
-            when (it.status) {
-                "true" -> {
-                    progressLogin.visibility = View.GONE
-                    session.createLoginSession(
-                        it.result?.first()?.username.toString(),
-                        it.result?.first()?.fullname.toString(),
-                        it.result?.first()?.position.toString()
-                    )
-                    goToMainActivity()
+        viewModel.loadData(userId.toString(), password.toString())
+            .observe(this, Observer {
+                when (it.status) {
+                    "true" -> {
+                        progressLogin.visibility = View.GONE
+                        session.createLoginSession(
+                            it.result?.first()?.username.toString(),
+                            it.result?.first()?.fullname.toString(),
+                            it.result?.first()?.position.toString()
+                        )
+                        goToMainActivity()
+                    }
+                    else -> {
+                        progressLogin.visibility = View.GONE
+                        Tools.alertFailed(
+                            this,
+                            "Failed",
+                            it.message.toString()
+                        )
+                    }
                 }
-                else -> {
-                    progressLogin.visibility = View.GONE
-                    Tools.alertFailed(this, "Failed", it.message.toString())
-                }
-            }
-        })
+            })
     }
 
     private fun goToMainActivity() {

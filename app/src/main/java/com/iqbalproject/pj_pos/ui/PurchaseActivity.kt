@@ -9,11 +9,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.iqbalproject.pj_pos.R
-import com.iqbalproject.pj_pos.adapter.StockPurchaseAdapter
 import com.iqbalproject.pj_pos.adapter.SpinnerSuppAdapter
+import com.iqbalproject.pj_pos.adapter.StockPurchaseAdapter
 import com.iqbalproject.pj_pos.model.StockDetail
 import com.iqbalproject.pj_pos.ui.viewModel.ProductViewModel
 import com.iqbalproject.pj_pos.ui.viewModel.SupplierViewModel
+import com.iqbalproject.pj_pos.utils.Constants
 import com.iqbalproject.pj_pos.utils.Tools
 import kotlinx.android.synthetic.main.activity_purchase.*
 import org.jetbrains.anko.startActivity
@@ -97,7 +98,7 @@ class PurchaseActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> finish()
-            R.id.btn_history -> Tools.toastWarning(this, "Under Development :)")
+            R.id.btn_history -> startActivity<HistoryActivity>("tag_history" to Constants.PURCHASE)
         }
         return super.onOptionsItemSelected(item)
     }

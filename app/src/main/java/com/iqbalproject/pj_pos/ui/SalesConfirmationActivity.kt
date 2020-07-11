@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -37,7 +38,6 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
 import kotlinx.android.synthetic.main.activity_sales_confirmation.*
 import kotlinx.android.synthetic.main.item_adjust_pay.view.*
-import org.jetbrains.anko.toast
 import java.io.File
 import java.io.FileOutputStream
 
@@ -59,7 +59,8 @@ class SalesConfirmationActivity : AppCompatActivity() {
     private var paid: Int = 0
     private lateinit var discount: String
 
-    private val file_name: String = "test_pdf.pdf"
+    //private val file_name: String = "test_pdf.pdf"
+    private var file_name: String? = null
 
     @SuppressLint("RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -124,6 +125,7 @@ class SalesConfirmationActivity : AppCompatActivity() {
                                                         tvTrxSaleStat.text = statusPay
                                                         btnPay.visibility = View.GONE
                                                         fabPrint.visibility = View.VISIBLE
+                                                        file_name = getString(R.string.nota_name) + trxId + ".pdf"
 
                                                         if (saleRes.status_sale == Constants.STAT_HUTANG) {
                                                             viewModelAr.pushData(
@@ -365,7 +367,8 @@ class SalesConfirmationActivity : AppCompatActivity() {
             //close
             document.close()
 
-            toast("Success").show()
+            Toast.makeText(this, "Sukses\n" +
+                    "Nota Tersimpan di $path", Toast.LENGTH_LONG).show()
 
             printPDF()
 
@@ -380,7 +383,7 @@ class SalesConfirmationActivity : AppCompatActivity() {
             val printAdapter = PdfDocumentAdapter(
                 this@SalesConfirmationActivity,
                 Common.getAppPath(this@SalesConfirmationActivity) + file_name,
-                "Order_$trxId"
+                "$file_name"
             )
             printManager.print("Document", printAdapter, PrintAttributes.Builder().build())
         } catch (e: Exception) {

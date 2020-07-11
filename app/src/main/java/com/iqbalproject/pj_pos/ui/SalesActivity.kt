@@ -18,6 +18,7 @@ import com.iqbalproject.pj_pos.adapter.StockSalesAdapter
 import com.iqbalproject.pj_pos.model.StockDetail
 import com.iqbalproject.pj_pos.ui.viewModel.CustomerViewModel
 import com.iqbalproject.pj_pos.ui.viewModel.ProductViewModel
+import com.iqbalproject.pj_pos.utils.Constants
 import com.iqbalproject.pj_pos.utils.Tools
 import com.shashank.sony.fancytoastlib.FancyToast
 import kotlinx.android.synthetic.main.activity_sales.*
@@ -88,7 +89,7 @@ class SalesActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> finish()
-            R.id.btn_history -> Tools.toastWarning(this, "Under Development :)")
+            R.id.btn_history -> startActivity<HistoryActivity>("tag_history" to Constants.SALES)
         }
         return super.onOptionsItemSelected(item)
     }

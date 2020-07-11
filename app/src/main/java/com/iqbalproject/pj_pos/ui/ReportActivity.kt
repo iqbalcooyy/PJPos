@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
@@ -31,11 +32,13 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
 import kotlinx.android.synthetic.main.activity_report.*
 import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil
+import java.io.File
 import java.io.FileOutputStream
 
 class ReportActivity : AppCompatActivity() {
 
-    private val file_name: String = "report_pj.pdf"
+    //private val file_name: String = "report_pj.pdf"
+    private var file_name: String? = null
     private lateinit var viewModel: ReportViewModel
     private lateinit var dateFragment: DialogFragment
 
@@ -88,6 +91,7 @@ class ReportActivity : AppCompatActivity() {
                                         }
 
                                         cvSalesReport.setOnClickListener {
+                                            file_name = getString(R.string.report_sales_name) + etStartDate.text + "_" + etEndDate.text + ".pdf"
                                             generateReport(
                                                 Common.getAppPath(this@ReportActivity) + file_name,
                                                 report,
@@ -96,6 +100,7 @@ class ReportActivity : AppCompatActivity() {
                                         }
 
                                         cvPurchaseReport.setOnClickListener {
+                                            file_name = getString(R.string.report_purchase_name) + etStartDate.text + "_" + etEndDate.text + ".pdf"
                                             generateReport(
                                                 Common.getAppPath(this@ReportActivity) + file_name,
                                                 report,
@@ -140,6 +145,9 @@ class ReportActivity : AppCompatActivity() {
         type: String
     ) {
         val document = Document()
+        document.pageSize = PageSize.A4
+        if (File(path).exists())
+            File(path).delete()
 
         try {
             val docWriter: PdfWriter = PdfWriter.getInstance(document, FileOutputStream(path))
@@ -255,6 +263,9 @@ class ReportActivity : AppCompatActivity() {
 
             document.close()
 
+            Toast.makeText(this, "Sukses\n" +
+                    "Laporan Tersimpan di $path", Toast.LENGTH_LONG).show()
+
             printPDF()
         } catch (e: Exception) {
             e.printStackTrace()
@@ -284,7 +295,7 @@ class ReportActivity : AppCompatActivity() {
             val printAdapter = PdfDocumentAdapter(
                 this@ReportActivity,
                 Common.getAppPath(this@ReportActivity) + file_name,
-                "Order_"
+                "$file_name"
             )
             printManager.print("Document", printAdapter, PrintAttributes.Builder().build())
         } catch (e: Exception) {

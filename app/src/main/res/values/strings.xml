@@ -2,6 +2,10 @@
     <string name="app_name">PJ-Pos</string>
     <string name="app_version">PJ-Pos 1.0</string>
 
+    <string name="nota_name">PJPos_Sales_</string>
+    <string name="report_sales_name">PJPos_Report_Sales_</string>
+    <string name="report_purchase_name">PJPos_Report_Purchase_</string>
+
     <string name="menu_1">Penjualan</string>
     <string name="menu_2">Pembelian</string>
     <string name="menu_3">Produk</string>

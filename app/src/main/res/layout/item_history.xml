@@ -13,7 +13,7 @@
             android:padding="10dp">
 
         <TextView
-                android:id="@+id/tvCustNameAr"
+                android:id="@+id/tvItemListHistory1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/acme"
@@ -21,49 +21,37 @@
                 android:textColor="@color/colorPrimary"
                 android:textSize="13sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/tvStatusAr"
+                app:layout_constraintEnd_toStartOf="@+id/tvItemListHistory2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-                android:id="@+id/tvStatusAr"
+                android:id="@+id/tvItemListHistory2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/acme"
-                android:text="OPEN"
+                android:text="Lunas"
                 android:textColor="@color/colorAccent"
                 android:textSize="13sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/tvCustNameAr"
+                app:layout_constraintBottom_toBottomOf="@+id/tvItemListHistory1"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tvCustNameAr" />
+                app:layout_constraintTop_toTopOf="@+id/tvItemListHistory1" />
 
         <TextView
-                android:id="@+id/tvArId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/acme"
-                android:text="AR ID : AR0905200001"
-                android:textColor="@android:color/black"
-                android:textSize="10sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvCustNameAr" />
-
-        <TextView
-                android:id="@+id/tvSaleIdAr"
+                android:id="@+id/tvItemListHistory3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/acme"
-                android:text=" | Sale ID : S0905200003"
+                android:text="Sale ID : AR0905200001"
                 android:textColor="@android:color/black"
                 android:textSize="10sp"
-                app:layout_constraintBottom_toBottomOf="@+id/tvArId"
-                app:layout_constraintEnd_toStartOf="@+id/tvArTotal"
-                app:layout_constraintStart_toEndOf="@+id/tvArId"
-                app:layout_constraintTop_toTopOf="@+id/tvArId" />
+                app:layout_constraintEnd_toStartOf="@+id/tvItemListHistory5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvItemListHistory1" />
 
         <TextView
-                android:id="@+id/tvArDate"
+                android:id="@+id/tvItemListHistory4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/acme"
@@ -71,20 +59,21 @@
                 android:textColor="@android:color/black"
                 android:textSize="10sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvArId" />
+                app:layout_constraintTop_toBottomOf="@+id/tvItemListHistory3" />
 
         <TextView
-                android:id="@+id/tvArTotal"
-                android:layout_width="wrap_content"
+                android:id="@+id/tvItemListHistory5"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/acme"
                 android:text="Rp 800,000"
+                android:textAlignment="textEnd"
                 android:textColor="@android:color/black"
                 android:textSize="17sp"
-                app:layout_constraintBottom_toBottomOf="@+id/tvArDate"
+                app:layout_constraintBottom_toBottomOf="@+id/tvItemListHistory4"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tvSaleIdAr"
-                app:layout_constraintTop_toTopOf="@+id/tvSaleIdAr" />
+                app:layout_constraintStart_toEndOf="@+id/tvItemListHistory3"
+                app:layout_constraintTop_toTopOf="@+id/tvItemListHistory3" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

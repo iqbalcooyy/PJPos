@@ -173,4 +173,28 @@ interface ApiService {
         @Query("ar_id") ar_id: String
     ): Call<DetailAccReceivRespon>
 
+    @GET("history_sales")
+    fun getHistorySales(
+        @Header("pjpos_key") api_key: String = Constants.API_KEY
+    ): Call<HistorySalesResponse>
+
+    @POST("history_sales")
+    @FormUrlEncoded
+    fun getHistorySalesDetail(
+        @Header("pjpos_key") api_key: String = Constants.API_KEY,
+        @Field("sale_id") sale_id: String
+    ): Call<HistorySalesDetailResponse>
+
+    @GET("history_purchase")
+    fun getHistoryPurchase(
+        @Header("pjpos_key") api_key: String = Constants.API_KEY
+    ): Call<HistoryPurchaseResponse>
+
+    @POST("history_purchase")
+    @FormUrlEncoded
+    fun getHistoryPurchaseDetail(
+        @Header("pjpos_key") api_key: String = Constants.API_KEY,
+        @Field("purchase_id") purchase_id: String
+    ): Call<HistoryPurchaseDetailResponse>
+
 }
