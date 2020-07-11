@@ -40,13 +40,13 @@
     </string-array>
 
     <array name="main_menu_icon">
-        <item>@drawable/ic_sales_order</item>
-        <item>@drawable/ic_sales_order</item>
-        <item>@drawable/ic_sales_order</item>
-        <item>@drawable/ic_sales_order</item>
-        <item>@drawable/ic_sales_order</item>
-        <item>@drawable/ic_sales_order</item>
-        <item>@drawable/ic_sales_order</item>
-        <item>@drawable/ic_sales_order</item>
+        <item>@drawable/ic_sales</item>
+        <item>@drawable/ic_purchase</item>
+        <item>@drawable/ic_receivable</item>
+        <item>@drawable/ic_product</item>
+        <item>@drawable/ic_supplier</item>
+        <item>@drawable/ic_customer</item>
+        <item>@drawable/ic_report</item>
+        <item>@drawable/ic_logout</item>
     </array>
 </resources>

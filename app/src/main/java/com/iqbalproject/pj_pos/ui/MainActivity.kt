@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
     private fun logoutProcess() {
         val dialog = AlertDialog.Builder(this)
         dialog.setTitle("Confirm Exit")
-        dialog.setIcon(R.drawable.ic_lock)
+        dialog.setIcon(R.drawable.ic_logout)
         dialog.setMessage("Are you sure want to exit?")
         dialog.setCancelable(false)
         dialog.setPositiveButton("Ok") { dialog, which ->
