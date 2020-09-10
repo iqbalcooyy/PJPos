@@ -24,6 +24,7 @@ import com.iqbalproject.pj_pos.ui.viewModel.AccReceivViewModel
 import com.iqbalproject.pj_pos.ui.viewModel.SalesConfirmViewModel
 import com.iqbalproject.pj_pos.utils.Common
 import com.iqbalproject.pj_pos.utils.Constants
+import com.iqbalproject.pj_pos.utils.SessionManager
 import com.iqbalproject.pj_pos.utils.Tools
 import com.itextpdf.text.*
 import com.itextpdf.text.pdf.BaseFont
@@ -43,6 +44,7 @@ import java.io.FileOutputStream
 
 class SalesConfirmationActivity : AppCompatActivity() {
 
+    private lateinit var session: SessionManager
     private lateinit var viewModel: SalesConfirmViewModel
     private lateinit var viewModelAr: AccReceivViewModel
     private lateinit var dialogForm: AlertDialog.Builder
@@ -58,14 +60,18 @@ class SalesConfirmationActivity : AppCompatActivity() {
     private var toBePaid: Int = 0
     private var paid: Int = 0
     private lateinit var discount: String
+    private var userId: String? = null
 
-    //private val file_name: String = "test_pdf.pdf"
     private var file_name: String? = null
 
     @SuppressLint("RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sales_confirmation)
+
+        session = SessionManager(applicationContext)
+        val user: HashMap<String, String> = session.getUserDetails()
+        userId = user[Constants.KEY_ID].toString()
 
         viewModel = ViewModelProviders.of(this).get(SalesConfirmViewModel::class.java)
         viewModelAr = ViewModelProviders.of(this).get(AccReceivViewModel::class.java)
@@ -98,10 +104,11 @@ class SalesConfirmationActivity : AppCompatActivity() {
                             viewModel.loadData(
                                 sales.last().id_dummy.toString(),
                                 itemId,
-                                0,
-                                toBePaid,
+                                discount.toInt(),
+                                total_payment,
                                 saleQty,
-                                paid
+                                paid,
+                                userId.toString()
                             )
 
                             viewModel.getData()
@@ -131,7 +138,8 @@ class SalesConfirmationActivity : AppCompatActivity() {
                                                             viewModelAr.pushData(
                                                                 trxId,
                                                                 sales.first().id_dummy.toString(),
-                                                                total_payment - paid
+                                                                toBePaid - paid,
+                                                                userId.toString()
                                                             )
                                                                 .observe(
                                                                     this@SalesConfirmationActivity,
@@ -305,7 +313,7 @@ class SalesConfirmationActivity : AppCompatActivity() {
                 addNewItemWithLeftAndRight(
                     document,
                     sales[i].item_name,
-                    "(0.0%)",
+                    "",
                     valueStyle,
                     valueStyle
                 )

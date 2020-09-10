@@ -2,8 +2,8 @@ package com.iqbalproject.pj_pos.utils
 
 class Constants {
     companion object {
-        //const val BASE_URL = "https://pj-pos.000webhostapp.com/"
-        const val BASE_URL = "http://192.168.43.155/pjpos-restapi/api/" //IP Wifi Hp
+        const val BASE_URL = "http://iqbal-api.com/pjpos-restapi/api/"
+        //const val BASE_URL = "http://192.168.43.155/pjpos-restapi/api/" //IP Wifi Hp
         //const val BASE_URL = "http://172.30.12.111/pjpos-restapi/api/"  //IP Kantor
         const val API_KEY = "putrajaya2020"
 

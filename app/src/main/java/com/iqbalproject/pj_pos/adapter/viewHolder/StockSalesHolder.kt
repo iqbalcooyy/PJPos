@@ -1,6 +1,9 @@
 package com.iqbalproject.pj_pos.adapter.viewHolder
 
 import android.content.Context
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -46,7 +49,7 @@ class StockSalesHolder(private val context: Context, view: View) : RecyclerView.
                 context.resources.getColorStateList(R.color.colorAccent)
         }
 
-        itemView.btnAddItem.onClick {
+       /* itemView.btnAddItem.onClick {
             if (stocks.item_qty == 0 || qty == stocks.item_qty) {
                 Tools.toastWarning(context, "Out of Stock")
             } else {
@@ -68,7 +71,70 @@ class StockSalesHolder(private val context: Context, view: View) : RecyclerView.
                 Tools.toastWarning(context, "Out of minimum quantity")
 
             itemView.tvPcs.text = qty.toString()
+        }*/
+
+        itemView.btnAddItem.onClick {
+            if (stocks.item_qty == 0 || qty == stocks.item_qty) {
+                Tools.toastWarning(context, "Out of Stock")
+            } else {
+                var x = 0
+                if (itemView.tvPcs.text.trim().toString().isNotEmpty())
+                    x = itemView.tvPcs.text.trim().toString().toInt()
+
+                qty = x + 1
+                //qty += 1
+                setValue(stocks, stocksList)
+                tvTotalPay.text = Tools.convertRupiahsFormat(priceTotal.toDouble())
+                tvTotalTerbilang.text = Tools.terbilang(priceTotal)
+                //itemView.tvPcs.text = qty.toString()
+                itemView.tvPcs.setText(qty.toString())
+            }
         }
+
+        itemView.btnRemoveItem.onClick {
+            if (qty > 0) {
+                var x = 0
+                if (itemView.tvPcs.text.trim().toString().isNotEmpty())
+                    x = itemView.tvPcs.text.trim().toString().toInt()
+
+                qty = x - 1
+                //qty -= 1
+                setValue(stocks, stocksList)
+                tvTotalPay.text = Tools.convertRupiahsFormat(priceTotal.toDouble())
+                tvTotalTerbilang.text = Tools.terbilang(priceTotal)
+            } else
+                Tools.toastWarning(context, "Out of minimum quantity")
+
+            //itemView.tvPcs.text = qty.toString()
+            itemView.tvPcs.setText(qty.toString())
+        }
+
+        itemView.tvPcs.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (!s.isNullOrEmpty()){
+                    if (stocks.item_qty == 0 || s.trim().toString().toInt() > stocks.item_qty) {
+                        Tools.toastWarning(context, "Out of Stock")
+                        qty = 0
+                        itemView.tvPcs.text.clear()
+                    } else {
+                        qty = s.trim().toString().toInt()
+                    }
+                } else {
+                    qty = 0
+                    itemView.tvPcs.text.clear()
+                }
+
+                setValue(stocks, stocksList)
+                tvTotalPay.text = Tools.convertRupiahsFormat(priceTotal.toDouble())
+                tvTotalTerbilang.text = Tools.terbilang(priceTotal)
+            }
+        })
     }
 
     private fun setValue(stocks: StockDetail, stocksList: List<StockDetail>) {

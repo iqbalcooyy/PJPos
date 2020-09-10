@@ -21,7 +21,8 @@ class SalesConfirmViewModel : ViewModel() {
         discount: Int,
         to_be_paid: Int,
         saleQty: List<Int>,
-        paid: Int
+        paid: Int,
+        user: String
     ) {
         status.value = null
 
@@ -31,7 +32,8 @@ class SalesConfirmViewModel : ViewModel() {
             discount = discount,
             to_be_paid = to_be_paid,
             sale_qty = saleQty,
-            paid = paid
+            paid = paid,
+            user = user
         )
             .enqueue(object : Callback<TrxResponses> {
                 override fun onFailure(call: Call<TrxResponses>, t: Throwable) {

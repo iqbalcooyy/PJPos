@@ -3,5 +3,6 @@
     <domain-config cleartextTrafficPermitted = "true">
         <domain includeSubdomains = "true">192.168.43.155</domain>
         <!--<domain includeSubdomains = "true">172.30.12.111</domain>-->
+        <domain includeSubdomains = "true">iqbal-api.com</domain>
     </domain-config>
 </network-security-config>

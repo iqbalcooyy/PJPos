@@ -2,7 +2,6 @@ package com.iqbalproject.pj_pos.ui
 
 import android.content.DialogInterface
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
@@ -61,7 +60,9 @@ class SalesActivity : AppCompatActivity() {
                     tvNull.visibility = View.GONE
 
                     it.result?.let { stockList ->
-                        rvItemsSale.adapter = StockSalesAdapter(stockList)
+                        val adapter = StockSalesAdapter(stockList)
+                        rvItemsSale.adapter = adapter
+                        adapter.notifyDataSetChanged()
                     }
                 }
             }

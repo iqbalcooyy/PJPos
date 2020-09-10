@@ -43,7 +43,11 @@ class AccReceivableVH(private val context: Context, view: View) : RecyclerView.V
                     if (receivable.remaining_payment == "0") {
                         Tools.alertInfo(context, "Perhatian", "Piutang telah Lunas!")
                     } else {
-                        (context as AccReceivableActivity).settlement(receivable.ar_id.toString(), receivable.remaining_payment.toString())
+                        (context as AccReceivableActivity).settlement(
+                            receivable.ar_id.toString(),
+                            receivable.remaining_payment.toString(),
+                            receivable.sale_id.toString()
+                        )
                     }
 
                     dialog.dismiss()

@@ -1,33 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.SalesConfirmationActivity">
 
     <LinearLayout
             android:id="@+id/view1"
-            android:orientation="horizontal"
-            android:weightSum="2"
             android:layout_width="match_parent"
-            android:layout_height="230dp">
+            android:layout_height="230dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
 
         <LinearLayout
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:weightSum="2"
-                android:background="@color/colorPrimary"
-                android:padding="10dp"
                 android:layout_width="0dp"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:weightSum="2">
 
             <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_weight="1"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp">
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -35,8 +34,7 @@
                         android:fontFamily="@font/acme"
                         android:text="Order"
                         android:textColor="@android:color/white"
-                        android:textSize="25sp"
-                />
+                        android:textSize="25sp" />
 
                 <TextView
                         android:id="@+id/tvCodeTrxSale"
@@ -45,16 +43,16 @@
                         android:fontFamily="@font/acme"
                         android:text="Confirmation"
                         android:textColor="@android:color/white"
-                        android:textSize="25sp"
-                />
+                        android:textSize="25sp" />
 
             </LinearLayout>
 
             <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_weight="1"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp">
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="bottom"
+                    android:orientation="vertical">
 
                 <TextView
                         android:id="@+id/tvCustNameConf"
@@ -62,99 +60,92 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/acme"
                         android:text="Customer Name"
-                        android:textStyle="italic"
                         android:textColor="@android:color/white"
                         android:textSize="15sp"
-                />
+                        android:textStyle="italic" />
 
                 <TextView
                         android:id="@+id/tvCustAddressConf"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:fontFamily="@font/acme"
                         android:text="Customer Address"
-                        android:textStyle="italic"
                         android:textColor="@android:color/white"
                         android:textSize="15sp"
-                        android:layout_marginTop="10dp"
-                />
+                        android:textStyle="italic" />
 
                 <TextView
                         android:id="@+id/tvCustTelpConf"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:fontFamily="@font/acme"
                         android:text="Customer Telp."
-                        android:textStyle="italic"
                         android:textColor="@android:color/white"
                         android:textSize="15sp"
-                        android:layout_marginTop="10dp"
-                />
+                        android:textStyle="italic" />
 
             </LinearLayout>
 
         </LinearLayout>
 
         <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@color/colorPrimary"
-                android:padding="10dp"
-                android:layout_width="0dp"
-                android:layout_height="match_parent">
+                android:padding="10dp">
 
             <TextView
                     android:id="@+id/tvTransDateConfirm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="5dp"
                     android:fontFamily="@font/acme"
                     android:text="Date: 20 January 2020"
-                    android:layout_marginTop="5dp"
-                    android:layout_alignParentRight="true"
                     android:textColor="@android:color/white"
-                    android:textSize="17sp"
-            />
+                    android:textSize="17sp" />
 
             <TextView
                     android:id="@+id/tvTrxSaleStat"
-                    android:layout_below="@+id/tvTransDateConfirm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvTransDateConfirm"
+                    android:layout_alignParentRight="true"
                     android:fontFamily="@font/acme"
                     android:text="To Be Paid"
-                    android:layout_alignParentRight="true"
                     android:textColor="@android:color/white"
-                    android:textSize="25sp"
-            />
+                    android:textSize="25sp" />
 
             <TextView
                     android:id="@+id/tvTotalPayConfirm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/acme"
-                    android:text="Rp 1,000,000"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentBottom="true"
+                    android:fontFamily="@font/acme"
+                    android:text="Rp 1,000,000"
                     android:textColor="@android:color/white"
-                    android:textSize="30sp"
-                    android:textStyle="bold"
-
-            />
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
 
         </RelativeLayout>
 
     </LinearLayout>
 
     <ScrollView
-            android:layout_below="@+id/view1"
-            android:layout_above="@+id/btnPay"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/btnPay"
+            android:layout_below="@+id/view1">
 
         <RelativeLayout
                 android:id="@+id/view2"
-                android:padding="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:padding="10dp">
 
             <TextView
                     android:id="@+id/tv3"
@@ -162,18 +153,16 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/acme"
                     android:text="Order Details"
-                    android:textSize="15sp"
-                    />
+                    android:textSize="15sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvItemsSaleConf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/tv3"
                     android:layout_marginTop="10dp"
                     android:scrollbars="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    />
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
             <TextView
                     android:id="@+id/tv4"
@@ -181,25 +170,23 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/rvItemsSaleConf"
                     android:layout_marginTop="5dp"
-                    android:text="Subtotal"
                     android:gravity="right"
+                    android:text="Subtotal"
                     android:textColor="@color/colorSecondaryText"
-                    android:textSize="15sp"
-                    />
+                    android:textSize="15sp" />
 
             <TextView
                     android:id="@+id/tvSubTot"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/rvItemsSaleConf"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/acme"
                     android:gravity="right"
                     android:paddingLeft="15dp"
-                    android:fontFamily="@font/acme"
-                    android:layout_marginTop="5dp"
                     android:text="Rp 1,200,000"
                     android:textColor="@color/colorSecondaryText"
-                    android:textSize="15sp"
-                    />
+                    android:textSize="15sp" />
 
             <TextView
                     android:id="@+id/tv5"
@@ -208,25 +195,23 @@
                     android:layout_below="@+id/tvSubTot"
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/acme"
-                    android:text="Discount"
                     android:gravity="right"
+                    android:text="Discount"
                     android:textColor="@color/colorSecondaryText"
-                    android:textSize="15sp"
-                    />
+                    android:textSize="15sp" />
 
             <TextView
                     android:id="@+id/tvDiscount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tvSubTot"
-                    android:gravity="right"
-                    android:fontFamily="@font/acme"
-                    android:paddingLeft="15dp"
                     android:layout_marginTop="5dp"
+                    android:fontFamily="@font/acme"
+                    android:gravity="right"
+                    android:paddingLeft="15dp"
                     android:text="Rp0"
                     android:textColor="@color/colorSecondaryText"
-                    android:textSize="15sp"
-                    />
+                    android:textSize="15sp" />
 
             <TextView
                     android:id="@+id/tv6"
@@ -235,27 +220,25 @@
                     android:layout_below="@+id/tvDiscount"
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/acme"
-                    android:text="Total"
-                    android:textStyle="bold"
                     android:gravity="right"
+                    android:text="Total"
                     android:textColor="@color/colorSecondaryText"
                     android:textSize="15sp"
-                    />
+                    android:textStyle="bold" />
 
             <TextView
                     android:id="@+id/tvTotPayConf"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tvDiscount"
-                    android:gravity="right"
-                    android:textStyle="bold"
-                    android:paddingLeft="15dp"
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/acme"
+                    android:gravity="right"
+                    android:paddingLeft="15dp"
                     android:text="Rp 1,000,000"
                     android:textColor="@color/colorSecondaryText"
                     android:textSize="15sp"
-                    />
+                    android:textStyle="bold" />
 
         </RelativeLayout>
 
@@ -263,34 +246,33 @@
 
     <Button
             android:id="@+id/btnPay"
-            android:text="Pay Now!"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
-            android:fontFamily="@font/acme"
-            android:background="@color/colorPrimary"
-            android:textAllCaps="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-    />
+            android:background="@color/colorPrimary"
+            android:fontFamily="@font/acme"
+            android:text="Pay Now!"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
 
     <ProgressBar
             android:id="@+id/progressConfirmSale"
-            android:layout_centerVertical="true"
-            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="70dp"/>
+            android:layout_height="70dp"
+            android:layout_centerVertical="true"
+            android:visibility="gone" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabPrint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="40dp"
-            android:layout_marginBottom="30dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            app:backgroundTint="@color/colorPrimary"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="30dp"
             android:visibility="gone"
+            app:backgroundTint="@color/colorPrimary"
             app:fabSize="normal"
             app:maxImageSize="30dp"
             app:srcCompat="@drawable/ic_print" />

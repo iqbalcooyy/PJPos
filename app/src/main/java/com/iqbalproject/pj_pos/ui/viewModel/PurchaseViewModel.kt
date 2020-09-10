@@ -17,7 +17,8 @@ class PurchaseViewModel : ViewModel() {
         itemId: List<String>,
         purchaseQty: List<Int>,
         purchaseUom: List<String>,
-        purchasePrice: List<Int>
+        purchasePrice: List<Int>,
+        user: String
     ): LiveData<TrxResponses> {
         val data = MutableLiveData<TrxResponses>()
 
@@ -27,7 +28,8 @@ class PurchaseViewModel : ViewModel() {
             item_id = itemId,
             purchase_qty = purchaseQty,
             purchase_uom = purchaseUom,
-            purchase_price = purchasePrice
+            purchase_price = purchasePrice,
+            user = user
         ).enqueue(object : Callback<TrxResponses> {
             override fun onFailure(call: Call<TrxResponses>, t: Throwable) {
                 data.value = null

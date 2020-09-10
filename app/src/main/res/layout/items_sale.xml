@@ -1,85 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="horizontal"
-              android:weightSum="4"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="5">
 
     <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="3"
             android:orientation="vertical"
-            android:padding="5dp"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content">
+            android:padding="5dp">
 
         <TextView
                 android:id="@+id/tvItemName"
-                android:text="Pasir Mundu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:fontFamily="@font/acme"
-                android:textStyle="bold"
+                android:text="Pasir Mundu"
                 android:textColor="@color/colorSecondaryText"
                 android:textSize="17sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:textStyle="bold" />
 
         <TextView
                 android:id="@+id/tvItemStock"
-                android:text="Stock: 1500 pcs"
-                android:fontFamily="@font/acme"
-                android:textSize="15sp"
-                android:textStyle="italic"
-                android:textColor="@color/colorGray"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/acme"
+                android:text="Stock: 1500 pcs"
+                android:textColor="@color/colorGray"
+                android:textSize="15sp"
+                android:textStyle="italic" />
 
         <TextView
                 android:id="@+id/tvItemPrice"
-                android:text="Price: Rp 150,000/pcs"
-                android:fontFamily="@font/acme"
-                android:textSize="15sp"
-                android:textStyle="italic"
-                android:textColor="@color/colorGray"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/acme"
+                android:text="Price: Rp 150,000/pcs"
+                android:textColor="@color/colorGray"
+                android:textSize="15sp"
+                android:textStyle="italic" />
 
     </LinearLayout>
 
     <LinearLayout
-            android:layout_weight="1"
-            android:weightSum="3"
-            android:orientation="horizontal"
-            android:layout_gravity="center_vertical"
             android:layout_width="0dp"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            android:weightSum="4">
 
         <ImageButton
                 android:id="@+id/btnAddItem"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:src="@drawable/ic_add"
                 android:backgroundTint="@color/colorAccent"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"/>
+                android:src="@drawable/ic_add" />
 
-        <TextView
+        <EditText
                 android:id="@+id/tvPcs"
-                android:layout_weight="1"
-                android:text="0"
-                android:fontFamily="@font/acme"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:layout_gravity="center_vertical"
-                android:textColor="@color/colorSecondaryText"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:fontFamily="@font/acme"
+                android:gravity="center"
+                android:inputType="number"
+                android:text="0"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+        <!--<TextView
+                android:id="@+id/tvPcs"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:fontFamily="@font/acme"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="15sp"
+                android:textStyle="bold" />-->
 
         <ImageButton
                 android:id="@+id/btnRemoveItem"
-                android:layout_weight="1"
-                android:src="@drawable/ic_remove"
-                android:backgroundTint="@color/colorAccent"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="@color/colorAccent"
+                android:src="@drawable/ic_remove" />
 
     </LinearLayout>
 

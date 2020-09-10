@@ -71,8 +71,7 @@
             android:scrollbars="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-    />
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     <TextView
             android:id="@+id/tvNull"

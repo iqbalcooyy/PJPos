@@ -20,6 +20,7 @@ class StockSalesAdapter(private val stocks: List<StockDetail>) : RecyclerView.Ad
     }
 
     override fun onBindViewHolder(holder: StockSalesHolder, position: Int) {
+        //holder.setIsRecyclable(false)
         holder.bindView(stocks[position], stocks)
     }
 }

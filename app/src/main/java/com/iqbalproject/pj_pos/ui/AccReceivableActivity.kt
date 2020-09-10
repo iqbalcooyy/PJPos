@@ -99,14 +99,14 @@ class AccReceivableActivity : AppCompatActivity() {
         })
     }
 
-    fun settlement(arId: String, arTotal: String) {
+    fun settlement(arId: String, arTotal: String, saleId: String) {
         dialogForm = AlertDialog.Builder(this)
         dialogForm.setTitle("Konfirmasi Penyelesaian")
         dialogForm.setIcon(R.drawable.ic_assignment)
         dialogForm.setMessage("Selesaikan transaksi $arId sebesar Rp $arTotal ?")
         dialogForm.setCancelable(true)
         dialogForm.setPositiveButton("Ok") { dialog: DialogInterface, i: Int ->
-            adjustmentPay(arId, arTotal)
+            adjustmentPay(arId, arTotal, saleId)
             dialog.dismiss()
         }
         dialogForm.setNegativeButton("Batal") { dialog: DialogInterface, i: Int ->
@@ -115,7 +115,7 @@ class AccReceivableActivity : AppCompatActivity() {
         dialogForm.show()
     }
 
-    private fun adjustmentPay(arId: String, arTotal: String) {
+    private fun adjustmentPay(arId: String, arTotal: String, saleId: String) {
         dialogForm = AlertDialog.Builder(this)
         inflater = layoutInflater
         dialogView = inflater.inflate(R.layout.item_adjust_pay_ar, null)
@@ -142,7 +142,8 @@ class AccReceivableActivity : AppCompatActivity() {
                         viewModel.editData(
                             arId,
                             etBayar.text.trim().toString(),
-                            etNotes.text.trim().toString()
+                            etNotes.text.trim().toString(),
+                            saleId
                         )
                             .observe(this@AccReceivableActivity, Observer {
                                 progressAccReceivable.visibility = View.GONE

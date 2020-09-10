@@ -39,7 +39,8 @@ interface ApiService {
         @Field("discount") discount: Int,
         @Field("to_be_paid") to_be_paid: Int,
         @Field("sale_qty[]") sale_qty: List<Int>,
-        @Field("paid") paid: Int
+        @Field("paid") paid: Int,
+        @Field("user") user: String
     ): Call<TrxResponses>
 
     @POST("trx_purchase")
@@ -51,7 +52,8 @@ interface ApiService {
         @Field("item_id[]") item_id: List<String>,
         @Field("purchase_qty[]") purchase_qty: List<Int>,
         @Field("purchase_uom[]") purchase_uom: List<String>,
-        @Field("purchase_price[]") purchase_price: List<Int>
+        @Field("purchase_price[]") purchase_price: List<Int>,
+        @Field("user") user: String
     ): Call<TrxResponses>
 
     @POST("supplier")
@@ -150,7 +152,8 @@ interface ApiService {
         @Header("pjpos_key") api_key: String = Constants.API_KEY,
         @Field("sale_id") sale_id: String,
         @Field("cust_id") cust_id: String,
-        @Field("ar_total") ar_total: Int
+        @Field("ar_total") ar_total: Int,
+        @Field("user") user: String
     ): Call<TrxAccReceivResponse>
 
     @GET("trx_acc_receivable")
@@ -164,7 +167,8 @@ interface ApiService {
         @Header("pjpos_key") api_key: String = Constants.API_KEY,
         @Field("ar_id") ar_id: String,
         @Field("ar_paid") ar_paid: String,
-        @Field("notes") notes: String? = ""
+        @Field("notes") notes: String? = "",
+        @Field("sale_id") sale_id: String
     ): Call<TrxAccReceivResponse>
 
     @GET("detail_acc_receivable")

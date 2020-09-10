@@ -32,13 +32,14 @@ class AccReceivViewModel : ViewModel() {
         return data
     }
 
-    fun pushData(saleId: String, custId: String, arTotal: Int): LiveData<TrxAccReceivResponse> {
+    fun pushData(saleId: String, custId: String, arTotal: Int, user: String): LiveData<TrxAccReceivResponse> {
         val data = MutableLiveData<TrxAccReceivResponse>()
 
         NetworkConfig().api().trx_acc_receivable(
             sale_id = saleId,
             cust_id = custId,
-            ar_total = arTotal
+            ar_total = arTotal,
+            user = user
         ).enqueue(object : Callback<TrxAccReceivResponse> {
             override fun onFailure(call: Call<TrxAccReceivResponse>, t: Throwable) {
                 data.value = null
@@ -55,13 +56,14 @@ class AccReceivViewModel : ViewModel() {
         return data
     }
 
-    fun editData(arId: String, arPaid: String, arNotes: String): LiveData<TrxAccReceivResponse> {
+    fun editData(arId: String, arPaid: String, arNotes: String, saleId: String): LiveData<TrxAccReceivResponse> {
         val data = MutableLiveData<TrxAccReceivResponse>()
 
         NetworkConfig().api().editAccReceivable(
             ar_id = arId,
             ar_paid = arPaid,
-            notes = arNotes
+            notes = arNotes,
+            sale_id = saleId
         ).enqueue(object : Callback<TrxAccReceivResponse> {
             override fun onFailure(call: Call<TrxAccReceivResponse>, t: Throwable) {
                 data.value = null

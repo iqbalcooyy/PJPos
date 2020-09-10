@@ -28,5 +28,6 @@ data class AccReceivable(
     val cust_telp: String? = null,
     val ar_total: String? = null,
     val remaining_payment: String? = null,
-    val ar_status: String? = null
+    val ar_status: String? = null,
+    val created_by: String? = null
 ) : Parcelable

@@ -10,6 +10,8 @@ import com.iqbalproject.pj_pos.R
 import com.iqbalproject.pj_pos.adapter.PurchaseConfirmationAdapter
 import com.iqbalproject.pj_pos.model.StockDetail
 import com.iqbalproject.pj_pos.ui.viewModel.PurchaseViewModel
+import com.iqbalproject.pj_pos.utils.Constants
+import com.iqbalproject.pj_pos.utils.SessionManager
 import com.iqbalproject.pj_pos.utils.Tools
 import kotlinx.android.synthetic.main.activity_purchase_confirmation.*
 import org.jetbrains.anko.clearTop
@@ -27,9 +29,17 @@ class PurchaseConfirmationActivity : AppCompatActivity() {
     private var purchasePrice: MutableList<Int> = mutableListOf()
     private var totalPrice: Int = 0
 
+    private lateinit var session: SessionManager
+    private var userId: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_purchase_confirmation)
+        supportActionBar?.title = "Konfirmasi Pembelian"
+
+        session = SessionManager(applicationContext)
+        val user: HashMap<String, String> = session.getUserDetails()
+        userId = user[Constants.KEY_ID].toString()
 
         viewModel = ViewModelProviders.of(this).get(PurchaseViewModel::class.java)
         purchaseConfirm.addAll(intent.getParcelableArrayListExtra("purchase_confirm"))
@@ -53,7 +63,8 @@ class PurchaseConfirmationActivity : AppCompatActivity() {
                 itemId,
                 purchaseQty,
                 purchaseUom,
-                purchasePrice
+                purchasePrice,
+                userId.toString()
             ).observe(this, Observer {
                 when (it.status) {
                     "true" -> {
